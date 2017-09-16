@@ -1,52 +1,49 @@
 #!/usr/bin/env node
 
-const db = require('../lib/db')
-const app = require('../app')
-const debug = require('debug')('back:server')
+/**
+ * Module dependencies.
+ */
 const http = require('http')
+const debug = require('debug')('net.migros.monitor:server')
+const displayRoutes = require('express-routemap')
+const app = require('../app')
+const { port, ip } = require('../config')
 
 /**
  * Get port from environment and store in Express.
  */
-
-const port = normalizePort(process.env.PORT || '4000')
 app.set('port', port)
+app.set('ip', ip)
 
 /**
  * Create HTTP server.
  */
+const server = http.createServer(app)
+
+// le socket connection
+const io = require('socket.io')(server)
+
+// register state route
+const { socketHandler } = require('../routes/payments')
+socketHandler(io)
+
+// TODO use browser sync
+// if (app.get('env') == 'development') {
+// const browserSync = require('browser-sync')
+// const bs = browserSync({ logSnippet: false })
+// app.use(require('connect-browser-sync')(bs))
+// }
 
 /**
  * Listen on provided port, on all network interfaces.
  */
-const server = http.createServer(app)
+server.listen(port, ip)
 server.on('error', onError)
 server.on('listening', onListening)
 
 /**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort (val) {
-  const port = parseInt(val, 10)
-
-  if (isNaN(port)) {
-    // named pipe
-    return val
-  }
-
-  if (port >= 0) {
-    // port number
-    return port
-  }
-
-  return false
-}
-
-/**
  * Event listener for HTTP server "error" event.
  */
-
 function onError (error) {
   if (error.syscall !== 'listen') {
     throw error
@@ -74,36 +71,16 @@ function onError (error) {
 /**
  * Event listener for HTTP server "listening" event.
  */
-
 function onListening () {
   const addr = server.address()
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port
-  console.log('Listening on ' + bind)
+  debug('Listening on ' + bind)
+
+  displayRoutes(app)
+
+  if (app.get('env') === 'development') {
+    console.log(`http://localhost:${port}`)
+  }
 }
-
-const io = require('socket.io')(server)
-server.listen(port)
-module.exports = io
-
-io.on('connection', socket => {
-  socket.emit('news', { hello: 'world' })
-
-  // TODO switch maybe to waw
-  // socket.on('speech', data => {
-  //   console.log(data)
-  //
-  //   db.postAudio(data.blob.toString())
-  //     .then(console.log)
-  //     .catch(console.error)
-  // })
-
-  socket.on('text', (data) => {
-    console.log('text', data)
-    data.user = 123 // default user
-    db.postConversation(data)
-      .then(console.log)
-      .catch(console.error)
-  })
-})

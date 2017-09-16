@@ -270,6 +270,12 @@ cli-cursor@^2.1.0:
   dependencies:
     restore-cursor "^2.0.0"
 
+cli-table@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/cli-table/-/cli-table-0.3.1.tgz#f53b05266a8b1a0b934b3d0821e6e2dc5914ae23"
+  dependencies:
+    colors "1.0.3"
+
 cli-width@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
@@ -295,6 +301,10 @@ color-convert@^1.9.0:
 color-name@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
+
+colors@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/colors/-/colors-1.0.3.tgz#0433f44d809680fdeb60ed260f1b0c262e82a40b"
 
 commander@2.8.x:
   version "2.8.1"
@@ -679,6 +689,18 @@ esutils@^2.0.2:
 etag@~1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.7.0.tgz#03d30b5f67dd6e632d2945d30d6652731a34d5d8"
+
+express-list-endpoints@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/express-list-endpoints/-/express-list-endpoints-2.0.3.tgz#622d0a3806a452f8e812306d6a11c4018340a562"
+
+express-routemap@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/express-routemap/-/express-routemap-1.1.0.tgz#02e3a9c9bf067d81570ca253a214ea57f30980b8"
+  dependencies:
+    chalk "^1.1.3"
+    cli-table "^0.3.1"
+    express-list-endpoints "^2.0.3"
 
 express@~4.13.1:
   version "4.13.4"
