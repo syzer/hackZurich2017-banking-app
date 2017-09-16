@@ -33,6 +33,7 @@ class Summary extends Component {
         <Container>
           <div>
             Dashboard
+            {this.props.summary}
           </div>
         </Container>
       </BrowserRouter>

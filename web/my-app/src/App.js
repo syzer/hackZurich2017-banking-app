@@ -184,11 +184,15 @@ class App extends Component {
           </header>
 
           <div>
-            <Route path="/payments" component={Payments}/>
+            <Route
+              path="/payments"
+              component={Payments}
+              payments={this.state.payments}
+            />
           </div>
 
           <div>
-            <Route path="/summary" component={Summary}/>
+            <Route path="/summary" component={Summary} />
           </div>
 
           <footer id="footer">
