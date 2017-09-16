@@ -9,7 +9,7 @@ function recognizeSpeech (phrases, onresult, onError) {
   recognition.lang = 'en-US'
   recognition.interimResults = false
   recognition.continuous = true
-  recognition.maxAlternatives = 1
+  recognition.maxAlternatives = 2
 
   recognition.start()
   recognition.onspeechend = () => {

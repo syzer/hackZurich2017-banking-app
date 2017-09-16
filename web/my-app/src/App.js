@@ -9,10 +9,12 @@ import MicrophoneOff from 'material-ui/svg-icons/av/stop'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { FloatingActionButton } from 'material-ui'
-import { List, InfiniteLoader } from 'react-virtualized'
-import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
+import { List } from 'react-virtualized'
 import recognizeSpeech from './Speech'
 import AlertDialog from './AlertDialog'
+import words from './Words'
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+
 // import * as speech from 'microsoft-speech-browser-sdk'
 
 injectTapEventPlugin()
@@ -25,7 +27,6 @@ class App extends Component {
     this.state = {
       name: 'Banking-app',
       party: ['Mark', 'Lukas', 'Mel', 'Ivan'].map(e => ({name: e})),
-      isDialogOpen: false,
       record: false,
       blobObject: null,
       isRecording: false,
@@ -46,27 +47,25 @@ class App extends Component {
     })
 
     socket.on('payment', data => {
-      //TODO show alert
-      console.log(data)
-      console.log(data.payment)
-      this.setState({ payments: this.state.payments.concat([data.payment]) })
+      console.log('server payment', data)
+      this.setState({
+        payments: this.state.payments.concat([data.payment])
+      })
+      // TODO
+      this.onDialogOpen(data.payment.ammount || 500)
     })
 
-    //TODO to payment and also loan
     socket.on('loan', newLoan => {
       this.setState({
-        messages: this.messages.concat([newLoan])
+        loans: this.loans.concat([newLoan])
       })
-      console.log('server payment', newLoan)
-      // TODO
-      // this.onDialogOpen(data.payment.amount)
     })
+
     socket.on('error', err => {
       console.error(err)
       console.warn('Backend error? , is it online?')
     })
-    //console.warn(process.env.REACT_APP_SECRET)
-    //this.state.socket.emit('getallpayments', {})
+
   }
 
   onStart = () => {
@@ -81,7 +80,7 @@ class App extends Component {
   }
 
   startRecording = () => {
-    recognizeSpeech(['lets', 'record'], (event) => {
+    recognizeSpeech(words, (event) => {
       const lastResult = event.results[0][0].transcript
       console.log('.', lastResult)
       this.state.socket.emit('postConversation', {message: lastResult})
@@ -113,38 +112,15 @@ class App extends Component {
     })
   }
 
-  // Every row is loaded except for our loading indicator row.
-  isPaymentRowLoaded = ({ index }) => /*!hasNextPage || */ index < this.state.payments.size
-
-  paymentRowRenderer =  ({ index, key, style }) => {
-    console.log('In Renderer')
-    let content
-    var list = this.state.payments
-    if (!this.isPaymentRowLoaded({ index })) {
-      content = 'Loading...'
-    } else {
-      content = list.getIn([index, 'name'])
-      console.log(content)
-    }
-
-    return (
-      <div
-        key={key}
-        style={style}
-      >
-      {content}
-      </div>
-    )
-  }
-
-
   render () {
     return (
       <Container>
         <div>
           <br/>
+          <br/>
+          <br/>
           <AlertDialog
-            open={this.state.isDialogOpen}
+            isOpen={this.state.isDialogOpen}
             message={this.state.dialogMessage}
             onDialogClose={this.onDialogClose}
           />
@@ -174,7 +150,7 @@ class App extends Component {
 
         </div>
 
-        <div id="sidedrawer" className="mui--no-user-select">
+        <div id="sidedrawer" classNameName="mui--no-user-select">
           <div id="sidedrawer-brand" className="mui--appbar-line-height">
             <span className="mui--text-title">Banking.io</span>
           </div>
@@ -303,9 +279,7 @@ class App extends Component {
         </footer>
 
       </Container>
-
     )
-
   }
 }
 
