@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import { render } from 'react-dom'
+import Form from 'muicss/lib/react/form'
+import Input from 'muicss/lib/react/input'
+import Textarea from 'muicss/lib/react/textarea'
+import RaisedButton from 'material-ui/RaisedButton'
+import Container from 'muicss/lib/react/container';
+
+
 import injectTapEventPlugin from 'react-tap-event-plugin'
+
 injectTapEventPlugin()
 
 class App extends Component {
@@ -15,27 +24,31 @@ class App extends Component {
   }
 
   listUsers () {
-    return (
-      this.state.users.map((e, i) =>
-        <div key={i} className="App-header">
-          <h3>user name: {e.name}</h3>
-        </div>)
-    )
+    return this.state.users.map((e, i) =>
+      <div key={i} className="App-header">
+        <h3>user name: {e.name}</h3>
+      </div>)
   }
 
   render () {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
-          <h2>{this.state.name}</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-
+      <Container>
         {this.listUsers()}
-      </div>
+        <RaisedButton label="Default" />
+
+        <Form>
+          <legend>Title</legend>
+          <Input hint="Input 1"/>
+          <Input hint="Input 2"/>
+          <Textarea hint="Textarea"/>
+          <RaisedButton variant="raised">Submit</RaisedButton>
+        </Form>
+
+        <Form inline={true}>
+          <Input/>
+          <RaisedButton>submit</RaisedButton>
+        </Form>
+      </Container>
     )
   }
 }

@@ -1,7 +1,11 @@
 module.exports = {
-  extends: 'standard',
+  extends: ['standard', "plugin:react/recommended"],
   rules: {
     semi: ['error', 'never']
   },
-  plugins: ['react']
+  plugins: ['react'],
+  ecmaFeatures: {
+    jsx: true,
+    modules: true,
+  }
 }
