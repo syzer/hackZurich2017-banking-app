@@ -108,3 +108,5 @@ io.on('connection', socket => {
       .catch(console.error)
   })
 })
+
+module.exports = io
