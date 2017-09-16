@@ -72,16 +72,32 @@ def upload_file():
 @app.route('/robot/<action>')
 def show_user_profile(action):
     # show the user profile for that user
-    return 'Robot does %s' % action
+    return 'Robot does %s' % action, 200
 
+from flask import request
+
+@app.route('/action')
+def action():
+    text = request.args.get('text')
+    return 'Text was ' + str(len(text))+ ' char long', 200
+
+luis_key=os.environ["AZURE_LUIS_KEY"]
+
+import urllib.request
+@app.route('/intent')
+def intent():
+    statement = '+'.join(request.args.get('statement').split(' '))
+    url = "https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/12011bc9-fe5b-4da5-8268-376aed698141?subscription-key="+luis_key+"&verbose=true&timezoneOffset=0&q="+statement
+    luis_json = urllib.request.urlopen(url).read()
+    return luis_json, 200
 
 
 import http.client, urllib.request, urllib.parse, urllib.error, base64
-key=os.environ["AZURE_LUIS_KEY"]
+
 headers = {
     # Request headers
     'Content-Type': 'application/json',
-    'Ocp-Apim-Subscription-Key': key,
+    'Ocp-Apim-Subscription-Key': luis_key,
 }
 
 def call_luis():
