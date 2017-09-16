@@ -15,7 +15,6 @@ const handlePayments = socket => {
   socket.emit('news', {payments: 'online'})
 
   db.getPayments().then(payments => {
-    console.log(payments)
     socket.emit('getPayments', payments)
   })
 
