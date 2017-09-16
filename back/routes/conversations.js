@@ -36,6 +36,22 @@ module.exports = {
           .then(console.log)
           .catch(console.error)
       })
+
+      socket.on('getallpayments', socket => {
+        console.log('getallpayments')
+
+        fetch('./data/user.payments.json')
+          .then((res) => res.json())
+          .then((data) => {
+            console.log('data:', data);
+            socket.emit('payment', {payment: {to: res.to, payment: res.payment, date: res.date}})
+          })
+
+        // socket.emit('talkback', {response: {message: 'Did not understand the command.'}})
+        db.postConversation(sentence)
+          .then(console.log)
+          .catch(console.error)
+      })
     })
   },
   httpHandler (express) {

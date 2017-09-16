@@ -9,7 +9,8 @@ import MicrophoneOff from 'material-ui/svg-icons/av/stop'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { FloatingActionButton } from 'material-ui'
-import { List } from 'react-virtualized'
+import { List, InfiniteLoader } from 'react-virtualized'
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import recognizeSpeech from './Speech'
 import AlertDialog from './AlertDialog'
 // import * as speech from 'microsoft-speech-browser-sdk'
@@ -24,14 +25,15 @@ class App extends Component {
     this.state = {
       name: 'Banking-app',
       party: ['Mark', 'Lukas', 'Mel', 'Ivan'].map(e => ({name: e})),
+      isDialogOpen: false,
       record: false,
-        blobObject: null,
-        isRecording: false,
-        socket,
-        messages: [],
-        payments: [],
-        loans: [],
-        news: []
+      blobObject: null,
+      isRecording: false,
+      socket,
+      messages: [],
+      payments: [],
+      loans: [],
+      news: []
     }
 
     socket.on('news', data => {
@@ -49,12 +51,14 @@ class App extends Component {
     socket.on('payment', data => {
       //TODO show alert
       console.log(data)
-      this.state.payments.concat(data.payment)
+      console.log(data.payment)
+      this.setState({ payments: this.state.payments.concat([data.payment]) })
+      //this.state.payments.concat(data.payment)
     })
 
     //TODO to payment and also loan
     socket.on('loan', data => {
-      this.state.payments.concat(data.loan)
+      this.state.loans.concat(data.loan)
       /*
       socket.on('loan', newLoan => {
         this.setState({
@@ -68,7 +72,8 @@ class App extends Component {
       console.warn('Backend error? , is it online?')
     })
 
-    console.warn(process.env.REACT_APP_SECRET)
+    //console.warn(process.env.REACT_APP_SECRET)
+    //this.state.socket.emit('getallpayments', {})
   }
 
   onStart = () => {
@@ -115,15 +120,38 @@ class App extends Component {
     })
   }
 
+  // Every row is loaded except for our loading indicator row.
+  isPaymentRowLoaded = ({ index }) => /*!hasNextPage || */ index < this.state.payments.size
+
+  paymentRowRenderer =  ({ index, key, style }) => {
+    console.log('In Renderer')
+    let content
+    var list = this.state.payments
+    if (!this.isPaymentRowLoaded({ index })) {
+      content = 'Loading...'
+    } else {
+      content = list.getIn([index, 'name'])
+      console.log(content)
+    }
+
+    return (
+      <div
+        key={key}
+        style={style}
+      >
+      {content}
+      </div>
+    )
+  }
+
+
   render () {
     return (
       <Container>
         <div>
           <br/>
-          <br/>
-          <br/>
           <AlertDialog
-            isOpen={this.state.isDialogOpen}
+            open={this.state.isDialogOpen}
             message={this.state.dialogMessage}
             onDialogClose={this.onDialogClose}
           />
@@ -153,7 +181,7 @@ class App extends Component {
 
         </div>
 
-        <div id="sidedrawer" classNameName="mui--no-user-select">
+        <div id="sidedrawer" className="mui--no-user-select">
           <div id="sidedrawer-brand" className="mui--appbar-line-height">
             <span className="mui--text-title">Banking.io</span>
           </div>
@@ -205,23 +233,15 @@ class App extends Component {
       </ul>
     </div>
     <div className="repeater">
-      <ul>
-          {this.state.payments}
-      </ul>
+
+      <BootstrapTable data={this.state.payments} striped={true} hover={true}>
+        <TableHeaderColumn dataField="date" isKey={true}>Date</TableHeaderColumn>
+        <TableHeaderColumn dataField="payment" isKey={false} dataAlign="center">Payment Amount</TableHeaderColumn>
+        <TableHeaderColumn dataField="to" dataSort={true}>To</TableHeaderColumn>
+      </BootstrapTable>
+
     </div>
 
-  <div className="repeater">
-    <ul>
-      <List
-        width={300}
-        height={300}
-        rowCount={this.state.loans.length}
-        rowHeight={20}
-      >
-
-      </List>
-    </ul>
-  </div>
           <div className="mui-container-fluid">
             <br/>
             <h1>Banking.io</h1>
@@ -269,7 +289,9 @@ class App extends Component {
         </footer>
 
       </Container>
+
     )
+
   }
 }
 
