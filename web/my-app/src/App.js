@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import styles from './index.css'
 import Container from 'muicss/lib/react/container'
+import { ReactMic } from 'react-mic'
+import MicrophoneOn                from 'material-ui/svg-icons/av/mic';
+import MicrophoneOff               from 'material-ui/svg-icons/av/stop';
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
+import { FloatingActionButton } from 'material-ui'
 
 injectTapEventPlugin()
 
@@ -13,13 +18,73 @@ class App extends Component {
 
     this.state = {
       name: 'Banking-app',
-      party: ['Mark', 'Lukas', 'Mel', 'Ivan'].map(e => ({name: e}))
+      party: ['Mark', 'Lukas', 'Mel', 'Ivan'].map(e => ({name: e})),
+      record: false,
+      blobObject: null,
+      isRecording: false
     }
+  }
+
+  onStart = () => {
+    console.log('You can tap into the onStart callback')
+  }
+
+  startRecording = () => {
+    this.setState({
+      record: true,
+      isRecording: true
+    })
+  }
+
+  stopRecording = () => {
+    this.setState({
+      record: false,
+      isRecording: false
+    })
+  }
+
+  onStop = (recordedBlob) => {
+    console.log('recordedBlob is: ', recordedBlob)
   }
 
   render () {
     return (
       <Container>
+        <div>
+          <br/>
+          <br/>
+          <br/>
+          <ReactMic
+            record={this.state.isRecording}
+            className="sound-wave"
+            onStop={this.onStop}
+            strokeColor="#000000"
+            backgroundColor="#DCEDC1"/>
+          <button onTouchTap={this.startRecording} type="button">Start</button>
+          <button onTouchTap={this.stopRecording} type="button">Stop</button>
+          <div>
+            <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio>
+          </div>
+          <br/>
+          <br/>
+
+          <FloatingActionButton
+            className="btn"
+            secondary={true}
+            disabled={this.state.isRecording}
+            onClick={this.startRecording}>
+            <MicrophoneOn/>
+          </FloatingActionButton>
+          <FloatingActionButton
+            className="btn"
+            secondary={true}
+            disabled={!this.state.isRecording}
+            onClick={this.stopRecording}>
+            <MicrophoneOff/>
+          </FloatingActionButton>
+
+        </div>
+
         <div id="sidedrawer" classNameName="mui--no-user-select">
           <div id="sidedrawer-brand" className="mui--appbar-line-height">
             <span className="mui--text-title">Banking.io</span>
