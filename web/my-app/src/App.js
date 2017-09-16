@@ -12,6 +12,7 @@ import { FloatingActionButton } from 'material-ui'
 import { List } from 'react-virtualized'
 import recognizeSpeech from './Speech'
 import AlertDialog from './AlertDialog'
+import words from './Words'
 // import * as speech from 'microsoft-speech-browser-sdk'
 
 injectTapEventPlugin()
@@ -49,7 +50,7 @@ class App extends Component {
         payments: this.state.payments.concat([data.payment])
       })
       // TODO
-      // this.onDialogOpen(data.payment.amount)
+      this.onDialogOpen(data.payment.ammount || 500)
     })
 
     socket.on('loan', newLoan => {
@@ -77,7 +78,7 @@ class App extends Component {
   }
 
   startRecording = () => {
-    recognizeSpeech(['lets', 'record'], (event) => {
+    recognizeSpeech(words, (event) => {
       const lastResult = event.results[0][0].transcript
       console.log('.', lastResult)
       this.state.socket.emit('postConversation', {message: lastResult})
@@ -195,12 +196,12 @@ class App extends Component {
           <div className="mui--appbar-height"/>
           <div className="repeater">
             <ul>
-              {this.state.messages}
+              {/*{this.state.messages.pop()}*/}
             </ul>
           </div>
           <div className="repeater">
             <ul>
-              {this.state.payments}
+              {/*{this.state.payments.pop()}*/}
             </ul>
           </div>
 

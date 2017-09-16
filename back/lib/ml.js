@@ -10,7 +10,8 @@ const intents = [
     keywords: ['pay', 'find', 'hey', 'but', 'why', 'bite mark of year', 'find me a two beers I need two beers', 'find me a to pierce',
       'pay  hey hey hey I want to pay five bucks to Martin and Mel',
       'play 500 France tool metal',
-      'a package from school now'
+      'a package from school now',
+      'face shifting'
     ]
   },
   {label: 'loan', keywords: ['loan']},
