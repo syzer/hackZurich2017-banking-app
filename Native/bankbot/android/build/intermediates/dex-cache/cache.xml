@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.48.3/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="56d3e81fee5f47a7a12ab65f4620f580c9c71d1e">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.48.3_9f1978420630f2e454893628cc76eb598b9542a6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_456beae1bfbef6196546d4c957b5e9b726c256ac.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_6fd54d2a805e0987e37c699e9501d59b31942d69.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_f1b31295be92f01ba61bcf2b9b0bcc31ee1d17ab.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_53e168e415ebb4be64edfe198b9e99f932c0eb2b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_00c8391d456880a8c033b9b5c37e54b19d73c6a0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.48.3/jars/libs/infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_24693c0e32af04730908a6ff7121309116bc1d58.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_07208a0ff961587916b22f8f3130db2635a6047b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_a4ff18420a8934a9e3216240ba688ec9282bc97a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.0.1_d93996b9a5f261ca125e5b85e3e67138a19af81a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/melpadden/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1_166ca7de15adacbf1825df277b2931d17da7d7f4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.3.0_dbd763a7cb88f0add71edfa0cc1f9a7d79e8d9ef.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_e7ea4e486c0a517743326a43c02b22b521807cd1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_ba98bfe5f5078db91d96f7deaa89db7159e9ea31.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_b3ccc2babea9a884ceb74ff86b197240a1d61adc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_e56c1baf1b1e9fadfe1de155eab194379ed042f3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1_9e62a16bcc045a0358c8824920a1da6bf6140a5d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_3bfb90e4599502eca2880fd1715c47e1a477994b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.0.1_c10b2779a328b491b13421cec1b9a96f00c033b9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_7e84a58f14b03e539c66973b1348dfcc92b37959.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/root/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/root/WebstormProjects/hackZurich2017-banking-app/Native/bankbot/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_8cb1dcf68d89b3835f6b8620276bad0ce2e75a94.jar" />
+    </item>
+
+</items>

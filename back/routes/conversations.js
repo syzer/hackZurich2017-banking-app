@@ -12,10 +12,24 @@ const defaultData = {
 module.exports = {
   socketHandler (io) {
     io.on('connection', socket => {
-      socket.emit('news', {conversations: 'online'})
+      socket.emit('news', {conversations: 'online'});
 
-      socket.on('text', (data) => {
-        console.log('text', data)
+      socket.on('talk', (data) => {
+        console.log('Talk Data received: ', data);
+        var sentence = data['message'];
+        console.log('Sentence is: ', sentence);
+        var verb = sentence.split(' ')[0];
+        switch(verb.toLowerCase()){
+            case 'pay':
+              var userInput = data[1];
+              var amountInput  = data[2];
+              socket.emit('talkback', {payment: {user: userInput, amount: amountinput}});
+
+            default:
+                socket.emit('talkback', {response: {message: 'Did not understand the command.'}});
+              // Do nothing for now. TODO: do something meaningful here
+        }
+
         data.user = 123 // default user
         db.postConversation(data)
           .then(console.log)
