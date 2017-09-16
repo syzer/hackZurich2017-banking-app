@@ -4,6 +4,7 @@ import './index.css'
 import registerServiceWorker from './registerServiceWorker'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import MyAwesomeReactComponent from './App'
+require('dotenv').config()
 
 const App = () => (
   <MuiThemeProvider>
