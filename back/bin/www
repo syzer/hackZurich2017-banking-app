@@ -29,13 +29,6 @@ const { socketHandler: conversations } = require('../routes/conversations')
 payments(io)
 conversations(io)
 
-// TODO use browser sync
-// if (app.get('env') == 'development') {
-// const browserSync = require('browser-sync')
-// const bs = browserSync({ logSnippet: false })
-// app.use(require('connect-browser-sync')(bs))
-// }
-
 /**
  * Listen on provided port, on all network interfaces.
  */
