@@ -23,9 +23,11 @@ const server = http.createServer(app)
 // le socket connection
 const io = require('socket.io')(server)
 
-// register state route
-const { socketHandler } = require('../routes/payments')
-socketHandler(io)
+// register all sockets api's
+const { socketHandler: payments } = require('../routes/payments')
+const { socketHandler: conversations } = require('../routes/conversations')
+payments(io)
+conversations(io)
 
 // TODO use browser sync
 // if (app.get('env') == 'development') {

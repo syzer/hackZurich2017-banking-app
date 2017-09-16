@@ -7,12 +7,11 @@ const bodyParser = require('body-parser')
 const socket = require('socket.io')
 const http = require('http')
 const debug = require('debug')('back:server')
-const db = require('./lib/db')
 const paymentHttpHandler = require('./routes/payments').httpHandler
+const conversationsHttpHandler = require('./routes/conversations').httpHandler
 
 const routes = require('./routes/index')
 const users = require('./routes/users')
-const payments = require('./routes/payments')
 
 const app = express()
 
@@ -52,7 +51,7 @@ if (app.get('env') === 'development') {
 }
 
 // production error handler
-// no stacktraces leaked to user
+// no stack traces leaked to user
 app.use((err, req, res, next) => {
   res.status(err.status || 500)
   res.render('error', {
@@ -61,18 +60,7 @@ app.use((err, req, res, next) => {
   })
 })
 
-const server = http.createServer(app)
-// const io = socket(server)
-
-
-  // socket.on('text', (data) => {
-  //   console.log('text', data)
-  //   data.user = 123 // default user
-  //   db.postConversation(data)
-  //     .then(console.log)
-  //     .catch(console.error)
-  // })
-// })
+app.use('/conversations', conversationsHttpHandler(express))
 app.use('/payments', paymentHttpHandler(express))
 
 // catch 404 and forward to error handler

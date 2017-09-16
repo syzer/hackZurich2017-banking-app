@@ -22,6 +22,11 @@ class App extends Component {
       console.log(data)
     })
 
+    socket.on('error', err => {
+      console.error(err)
+      console.warn('Backend error? , is it online?')
+    })
+
     this.state = {
       name: 'Banking-app',
       party: ['Mark', 'Lukas', 'Mel', 'Ivan'].map(e => ({name: e})),
@@ -77,9 +82,6 @@ class App extends Component {
           <div>
             <audio ref="audioSource" controls="controls" src={this.state.blobURL}/>
           </div>
-          <br/>
-          <br/>
-
           <FloatingActionButton
             className="btn"
             secondary={true}
@@ -101,7 +103,7 @@ class App extends Component {
           <div id="sidedrawer-brand" className="mui--appbar-line-height">
             <span className="mui--text-title">Banking.io</span>
           </div>
-          <div className="mui-divider"></div>
+          <div className="mui-divider"/>
           <ul>
             <li>
               <strong>Going To Bar</strong>
