@@ -12,30 +12,25 @@ const defaultData = {
 module.exports = {
   socketHandler (io) {
     io.on('connection', socket => {
-      socket.emit('news', {conversations: 'online'});
+      socket.emit('news', {conversations: 'online'})
 
-      socket.on('talk', (data) => {
-        console.log('Talk Data received: ', data);
-        var sentence = data['message'];
-        console.log('Sentence is: ', sentence);
-        var verb = sentence.split(' ')[0];
-        switch(verb.toLowerCase()){
-            case 'pay':
-              var userInput = data[1];
-              var amountInput  = data[2];
-              socket.emit('talkback', {payment: {user: userInput, amount: amountinput}});
-
-            default:
-                socket.emit('talkback', {response: {message: 'Did not understand the command.'}});
-              // Do nothing for now. TODO: do something meaningful here
-        }
-
-<<<<<<< HEAD
-=======
       socket.on('postConversation', (data) => {
-        console.log('postConversation', data)
->>>>>>> 079c110458cb9d4aa3a97a18b07fbb00dd63d937
         data.user = 123 // default user
+        console.log('postConversation', data)
+        const sentence = data['message']
+        console.log('Sentence is: ', sentence)
+        const verb = sentence.split(' ')[0].toLowerCase()
+        switch (verb) {
+          case 'pay':
+            const userInput = data[1]
+            const amountInput = data[2]
+            socket.emit('talkback', {payment: {user: userInput, amount: amountInput}})
+            break
+          default:
+            socket.emit('talkback', {response: {message: 'Did not understand the command.'}})
+            // Do nothing for now. TODO: do something meaningful here
+            break
+        }
         db.postConversation(data)
           .then(console.log)
           .catch(console.error)
