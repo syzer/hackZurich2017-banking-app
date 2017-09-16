@@ -38,40 +38,35 @@ class App extends Component {
 
     socket.on('news', data => {
       console.log(data)
-      this.state.news.concat(data)
     })
 
     // TODO unrecognized conversation from server
     socket.on('talkback', data => {
       console.log('Talkback data received: ', data)
-      this.state.message.concat(data.message)
     })
 
-    //TODO to payment and also loan
     socket.on('payment', data => {
       //TODO show alert
       console.log(data)
       console.log(data.payment)
       this.setState({ payments: this.state.payments.concat([data.payment]) })
-      //this.state.payments.concat(data.payment)
     })
 
     //TODO to payment and also loan
-    socket.on('loan', data => {
-      this.state.loans.concat(data.loan)
-      /*
-      socket.on('loan', newLoan => {
-        this.setState({
-        messages: this.messages.concat([newLoan])
+    socket.on('loan', newLoan => {
+      this.setState({
+      messages: this.messages.concat([newLoan])
+      console.log('server payment', data)
+      this.setState({
+        payments: this.state.payments.concat([data.payment])
       })
-      */
+      // TODO
+      // this.onDialogOpen(data.payment.amount)
     })
-
     socket.on('error', err => {
       console.error(err)
       console.warn('Backend error? , is it online?')
     })
-
     //console.warn(process.env.REACT_APP_SECRET)
     //this.state.socket.emit('getallpayments', {})
   }
@@ -241,7 +236,28 @@ class App extends Component {
       </BootstrapTable>
 
     </div>
+          <div className="repeater">
+            <ul>
+              {this.state.messages}
+            </ul>
+          </div>
+          <div className="repeater">
+            <ul>
+              {this.state.payments}
+            </ul>
+          </div>
 
+          <div className="repeater">
+            <ul>
+              <List
+                width={300}
+                height={300}
+                rowCount={this.state.loans.length}
+                rowHeight={20}
+                rowRenderer={() => null}>
+              </List>
+            </ul>
+          </div>
           <div className="mui-container-fluid">
             <br/>
             <h1>Banking.io</h1>
