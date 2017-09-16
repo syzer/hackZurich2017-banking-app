@@ -18,6 +18,7 @@ import * as ReactToastr from 'react-toastr'
 import Summary from './route/Summary'
 import Payments from './route/Payments'
 import SideBar from './route/SideBar'
+import {BrowserRouter, Route} from "react-router-dom";
 
 injectTapEventPlugin()
 
