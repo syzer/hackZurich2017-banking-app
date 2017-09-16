@@ -25,7 +25,7 @@ module.exports = {
 
         ml.getIntent(`${intent.label}  ${sentence.message}`)
           .then(data => {
-            const resp = { intent: data.topScoringIntent.intent, entities: data.entities}
+            const resp = { intent: data.topScoringIntent.intent, entities: data.entities }
             return resp
           })
           .then(console.log)
