@@ -11,7 +11,10 @@ const defaultData = {
 /* set new payment of user . */
 router.post('/', (req, res, next) => {
   console.log(req.body, typeof req.body)
-  res.json({payment: 400})
+  const newResponse = Object.assign({}, defaultData, req.body)
+
+
+  return res.json(newResponse)
 })
 
 module.exports = router
