@@ -16,34 +16,34 @@ injectTapEventPlugin()
 
 class App extends Component {
   constructor (props) {
-    super(props);
-    const socket = global.io.connect('http://localhost:4000');
-    this.messages = [];
+    super(props)
+    const socket = global.io.connect('http://localhost:4000')
 
     socket.on('news', data => {
-        console.log(data)
-    });
+      console.log(data)
+    })
 
+    // TODO eunrecognized conversation from server
     socket.on('talkback', data => {
-        console.log('Talkback data received: ', data);
-        var type = Object.keys(data)[0];
+      console.log('Talkback data received: ', data)
+    })
 
-        console.log('Type: ', type);
-        switch(type){
-            case 'response':
-              console.log('Type is Response');
-              this.messages.push(<li>data['response']</li>);
-              break;
-            default:
-              this.messages.push(<li>Unrecognized response!</li>);
-              break;
-        }
-    });
+    //TODO to payment and also loan
+    socket.on('payment', data => {
+      //TODO show alert
+      console.warn(data)
+      this.onDialogOpen(data.payment.amount)
+    })
+
+    //TODO to payment and also loan
+    socket.on('loan', data => {
+      // this.setState()
+    })
 
     socket.on('error', err => {
-      console.error(err).constructor
+      console.error(err)
       console.warn('Backend error? , is it online?')
-    });
+    })
 
     this.state = {
       name: 'Banking-app',
@@ -51,13 +51,14 @@ class App extends Component {
       record: false,
       blobObject: null,
       isRecording: false,
-      socket
-    };
-  };
+      socket,
+      messages: []
+    }
+  }
 
   onStart = () => {
     console.log('You can tap into the onStart callback')
-  };
+  }
 
   onDialogOpen = (message) => {
     this.setState({
@@ -78,20 +79,20 @@ class App extends Component {
       record: true,
       isRecording: true
     })
-  };
+  }
 
   stopRecording = () => {
     this.setState({
       record: false,
       isRecording: false
     })
-  };
+  }
 
   // TODO change it to WAV file
   onStop = (recordedBlob) => {
     console.log('recordedBlob is: ', recordedBlob)
     this.state.socket.emit('speech', recordedBlob)
-  };
+  }
 
   onDialogClose = () => {
     this.setState({
@@ -187,7 +188,7 @@ class App extends Component {
           </div>
         </header>
         <div id="content-wrapper">
-          <div className="mui--appbar-height"></div>
+          <div className="mui--appbar-height"/>
           <div className="repeater">
             <ul>
               {this.messages}
@@ -241,7 +242,7 @@ class App extends Component {
 
       </Container>
     )
-  };
+  }
 }
 
 export default App
