@@ -18,26 +18,26 @@ class App extends Component {
   constructor (props) {
     super(props)
     const socket = global.io.connect('http://localhost:4000')
-    this.messages = []
 
     socket.on('news', data => {
       console.log(data)
     })
 
+    // TODO eunrecognized conversation from server
     socket.on('talkback', data => {
       console.log('Talkback data received: ', data)
-      var type = Object.keys(data)[0]
+    })
 
-      console.log('Type: ', type)
-      switch (type) {
-        case 'response':
-          console.log('Type is Response')
-          this.messages.push(<li>data['response']</li>)
-          break
-        default:
-          this.messages.push(<li>Unrecognized response!</li>)
-          break
-      }
+    //TODO to payment and also loan
+    socket.on('payment', data => {
+      //TODO show alert
+      console.warn(data)
+      this.onDialogOpen(data.payment.amount)
+    })
+
+    //TODO to payment and also loan
+    socket.on('loan', data => {
+      // this.setState()
     })
 
     socket.on('error', err => {
@@ -51,7 +51,8 @@ class App extends Component {
       record: false,
       blobObject: null,
       isRecording: false,
-      socket
+      socket,
+      messages: []
     }
   }
 

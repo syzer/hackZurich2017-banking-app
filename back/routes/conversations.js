@@ -14,17 +14,21 @@ module.exports = {
     io.on('connection', socket => {
       socket.emit('news', {conversations: 'online'})
 
+      socket.emit('payment', {payment: {user: 123, amount: 300}})
+
       socket.on('postConversation', (data) => {
         data.user = 123 // default user
         console.log('postConversation', data)
         const sentence = data['message']
         console.log('Sentence is: ', sentence)
         const verb = sentence.split(' ')[0].toLowerCase()
+
         switch (verb) {
           case 'pay':
             const userInput = data[1]
             const amountInput = data[2]
-            socket.emit('talkback', {payment: {user: userInput, amount: amountInput}})
+            // TODO payments api
+            socket.emit('payment', {payment: {user: userInput, amount: amountInput}})
             break
           default:
             socket.emit('talkback', {response: {message: 'Did not understand the command.'}})
