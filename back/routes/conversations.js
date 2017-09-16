@@ -1,5 +1,6 @@
 const db = require('../lib/db')
 const {onError} = require('../lib')
+const ml = require('../lib/ml')
 
 const defaultData = {
   payment: 400,
@@ -14,26 +15,24 @@ module.exports = {
     io.on('connection', socket => {
       socket.emit('news', {conversations: 'online'})
 
-      socket.on('postConversation', (data) => {
-        data.user = 123 // default user
-        console.log('postConversation', data)
-        const sentence = data['message']
-        console.log('Sentence is: ', sentence)
-        const verb = sentence.split(' ')[0].toLowerCase()
+      socket.on('postConversation', (sentence) => {
+        sentence.user = 123 // default user
+        sentence.date = new Date()
+        console.log('postConversation', sentence)
 
-        switch (verb) {
-          case 'pay':
-            const userInput = data[1]
-            const amountInput = data[2]
-            // TODO payments api
-            socket.emit('payment', {payment: {user: userInput, amount: amountInput}})
-            break
-          default:
-            socket.emit('talkback', {response: {message: 'Did not understand the command.'}})
-            // Do nothing for now. TODO: do something meaningful here
-            break
-        }
-        db.postConversation(data)
+        const intent = ml.classify(sentence.message)
+        console.log(intent)
+
+        ml.getIntent(`${intent.label}  ${sentence.message}`)
+          .then(data => {
+            const resp = { intent: data.topScoringIntent.intent, entities: data.entities }
+            return resp
+          })
+          .then(console.log)
+
+        socket.emit('payment', {payment: {user: 123, amount: 300}})
+        // socket.emit('talkback', {response: {message: 'Did not understand the command.'}})
+        db.postConversation(sentence)
           .then(console.log)
           .catch(console.error)
       })

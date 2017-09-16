@@ -12,6 +12,7 @@ import { FloatingActionButton } from 'material-ui'
 import { List } from 'react-virtualized'
 import recognizeSpeech from './Speech'
 import AlertDialog from './AlertDialog'
+// import * as speech from 'microsoft-speech-browser-sdk'
 
 injectTapEventPlugin()
 
@@ -32,16 +33,16 @@ class App extends Component {
         loans: [],
         news: []
     }
+
     socket.on('news', data => {
       console.log(data)
       this.state.news.concat(data)
     })
 
-
-    // TODO eunrecognized conversation from server
+    // TODO unrecognized conversation from server
     socket.on('talkback', data => {
       console.log('Talkback data received: ', data)
-    this.state.message.concat(data.message)
+      this.state.message.concat(data.message)
     })
 
     //TODO to payment and also loan
@@ -54,6 +55,12 @@ class App extends Component {
     //TODO to payment and also loan
     socket.on('loan', data => {
       this.state.payments.concat(data.loan)
+      /*
+      socket.on('loan', newLoan => {
+        this.setState({
+        messages: this.messages.concat([newLoan])
+      })
+      */
     })
 
     socket.on('error', err => {
@@ -61,6 +68,7 @@ class App extends Component {
       console.warn('Backend error? , is it online?')
     })
 
+    console.warn(process.env.REACT_APP_SECRET)
   }
 
   onStart = () => {
@@ -78,7 +86,7 @@ class App extends Component {
     recognizeSpeech(['lets', 'record'], (event) => {
       const lastResult = event.results[0][0].transcript
       console.log('.', lastResult)
-      this.state.socket.emit('postConversation', {[new Date()]: lastResult})
+      this.state.socket.emit('postConversation', {message: lastResult})
     }, error => {
       this.onDialogOpen('Could not understand you')
     })
@@ -111,11 +119,6 @@ class App extends Component {
     return (
       <Container>
         <div>
-          <iframe
-            width="350"
-            height="430"
-            src="https://console.api.ai/api-client/demo/embedded/e092071a-5dcb-4983-8264-51dafd31f867">
-          </iframe>
           <br/>
           <br/>
           <br/>
@@ -198,7 +201,7 @@ class App extends Component {
           <div className="mui--appbar-height"/>
     <div className="repeater">
       <ul>
-        {this.messages}
+        {this.state.messages}
       </ul>
     </div>
     <div className="repeater">
