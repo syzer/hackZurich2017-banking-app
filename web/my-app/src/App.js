@@ -10,6 +10,7 @@ import MicrophoneOff from 'material-ui/svg-icons/av/stop'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { FloatingActionButton } from 'material-ui'
 import recognizeSpeech from './Speech'
+import AlertDialog from './AlertDialog'
 
 injectTapEventPlugin()
 
@@ -33,7 +34,9 @@ class App extends Component {
       record: false,
       blobObject: null,
       isRecording: false,
-      socket
+      socket,
+      isDialogOpen: false,
+      dialogMessage: ''
     }
   }
 
@@ -41,11 +44,20 @@ class App extends Component {
     console.log('You can tap into the onStart callback')
   }
 
+  onDialogOpen = (message) => {
+    this.setState({
+      dialogMessage: message,
+      isDialogOpen: true
+    })
+  }
+
   startRecording = () => {
     recognizeSpeech(['lets', 'record'], (event) => {
       const lastResult = event.results[0][0].transcript
       console.log('.', lastResult)
-      this.state.socket.emit('text', {[new Date()]: lastResult})
+      this.state.socket.emit('postConversation', {[new Date()]: lastResult})
+    }, error => {
+      this.onDialogOpen('Could not understand you')
     })
     this.setState({
       record: true,
@@ -66,6 +78,12 @@ class App extends Component {
     this.state.socket.emit('speech', recordedBlob)
   }
 
+  onDialogClose = () => {
+    this.setState({
+      isDialogOpen: false
+    })
+  }
+
   render () {
     return (
       <Container>
@@ -73,6 +91,11 @@ class App extends Component {
           <br/>
           <br/>
           <br/>
+          <AlertDialog
+            isOpen={this.state.isDialogOpen}
+            message={this.state.dialogMessage}
+            onDialogClose={this.onDialogClose}
+          />
           <ReactMic
             record={this.state.isRecording}
             className="sound-wave"

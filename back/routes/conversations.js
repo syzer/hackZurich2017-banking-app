@@ -14,8 +14,8 @@ module.exports = {
     io.on('connection', socket => {
       socket.emit('news', {conversations: 'online'})
 
-      socket.on('text', (data) => {
-        console.log('text', data)
+      socket.on('postConversation', (data) => {
+        console.log('postConversation', data)
         data.user = 123 // default user
         db.postConversation(data)
           .then(console.log)
