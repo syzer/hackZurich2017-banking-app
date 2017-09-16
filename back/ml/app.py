@@ -3,16 +3,16 @@ import os
 import sys
 import traceback
 import random
-
 import requests
 from flask import Flask, request, flash, redirect, url_for
+import urllib.request
+
 
 app = Flask(__name__)
 
-
 UPLOAD_FOLDER = '/uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-
+luis_key=os.environ["AZURE_LUIS_KEY"]
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/', methods=['GET'])
@@ -91,9 +91,7 @@ def action():
     text = request.args.get('text')
     return 'Text was ' + str(len(text))+ ' char long', 200
 
-luis_key=os.environ["AZURE_LUIS_KEY"]
 
-import urllib.request
 @app.route('/intent')
 def intent():
     statement = '+'.join(request.args.get('statement').split(' '))
@@ -101,32 +99,6 @@ def intent():
     luis_json = urllib.request.urlopen(url).read()
     return luis_json, 200
 
-
-
-
-import http.client, urllib.request, urllib.parse, urllib.error, base64
-
-headers = {
-    # Request headers
-    'Content-Type': 'application/json',
-    'Ocp-Apim-Subscription-Key': luis_key,
-}
-
-def call_luis():
-    params = urllib.parse.urlencode({
-    })
-
-    try:
-        conn = http.client.HTTPSConnection('westus.api.cognitive.microsoft.com')
-        conn.request("POST", "/luis/api/v2.0/apps/?%s" % params, "{hello there my good man}", headers)
-        response = conn.getresponse()
-        data = response.read()
-        print(data)
-        conn.close()
-        return data, 200
-    except Exception as e:
-        print("[Errno {0}] {1}".format(e.errno, e.strerror))
-    return 'not ok',200
 
 if __name__ == '__main__':
     print("Running")
