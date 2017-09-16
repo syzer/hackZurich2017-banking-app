@@ -16,6 +16,8 @@ module.exports = {
 
       socket.emit('news', {payments: 'online'})
 
+      socket.emit('payments', {payment: {user: 123, amout: 400}})
+
       socket.on('disconnect', () =>
         console.log(`user disconnected ${socket.id}`)
       )
