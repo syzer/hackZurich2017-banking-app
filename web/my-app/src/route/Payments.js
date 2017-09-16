@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import './App.css'
+import '../App.css'
 import { BrowserRouter, Link, Route } from 'react-router-dom'
+// import logo from './logo.svg'
+// import styles from './index.css'
 import Container from 'muicss/lib/react/container'
 import { ReactMic } from 'react-mic'
 import MicrophoneOn from 'material-ui/svg-icons/av/mic'
@@ -8,22 +10,15 @@ import MicrophoneOff from 'material-ui/svg-icons/av/stop'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { FloatingActionButton } from 'material-ui'
-import recognizeSpeech from './Speech'
-import AlertDialog from './AlertDialog'
-import words from './Words'
+import { List } from 'react-virtualized'
+import recognizeSpeech from '../Speech'
+import AlertDialog from '../AlertDialog'
+import words from '../Words'
 import * as ReactToastr from 'react-toastr'
 // import * as speech from 'microsoft-speech-browser-sdk'
-import Summary from './route/Summary'
-import Payments from './route/Payments'
-import SideBar from './route/SideBar'
 
-injectTapEventPlugin()
 
-const {ToastContainer} = ReactToastr
-
-const ToastMessageFactory = React.createFactory(ReactToastr.ToastMessage.animation)
-
-class App extends Component {
+class Payments extends Component {
   constructor (props) {
     super(props)
     const socket = global.io.connect('http://localhost:4000')
@@ -41,7 +36,9 @@ class App extends Component {
       news: []
     }
 
-    socket.on('news', data => console.log)
+    socket.on('news', data => {
+      console.log(data)
+    })
 
     // TODO unrecognized conversation from server
     socket.on('talkback', data => {
@@ -53,10 +50,10 @@ class App extends Component {
       this.setState({
         payments: this.state.payments.concat([data.payment])
       })
+      // this.onDialogOpen(data.payment.amount || 500)
       this.addAlert(data.payment.amount || 500)
     })
 
-    // TODO
     socket.on('loan', newLoan => {
       this.setState({
         loans: this.loans.concat([newLoan])
@@ -127,48 +124,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Container>
-          <div>
-            <AlertDialog
-              isOpen={this.state.isDialogOpen}
-              message={this.state.dialogMessage}
-              onDialogClose={this.onDialogClose}
-            />
-            <ToastContainer
-              ref={(input) => {this.toastr = input}}
-              toastMessageFactory={ToastMessageFactory}
-              className="toast-top-right"
-              preventDuplicates="true"
-            />
-            <br/>
-            <br/>
-            <br/>
-            <ReactMic
-              record={this.state.isRecording}
-              className="sound-wave"
-              onStop={this.onStop}
-              strokeColor="#000000"
-              backgroundColor="#DCEDC1"/>
-            <div>
-              <audio ref="audioSource" controls="controls" src={this.state.blobURL}/>
-            </div>
-            <FloatingActionButton
-              className="btn"
-              secondary={true}
-              disabled={this.state.isRecording}
-              onClick={this.startRecording}>
-              <MicrophoneOn/>
-            </FloatingActionButton>
-            <FloatingActionButton
-              className="btn"
-              secondary={true}
-              disabled={!this.state.isRecording}
-              onClick={this.stopRecording}>
-              <MicrophoneOff/>
-            </FloatingActionButton>
-          </div>
-
-          <SideBar/>
-
           <header id="header">
             <div className="mui-appbar mui--appbar-line-height">
               <div className="mui-container-fluid">
@@ -179,25 +134,36 @@ class App extends Component {
               </div>
             </div>
           </header>
+          <div id="content-wrapper">
+            <div className="mui--appbar-height"/>
 
-          <div>
-            <Route path="/payments" component={Payments}/>
-          </div>
-
-          <div>
-            <Route path="/summary" component={Summary}/>
-          </div>
-
-          <footer id="footer">
+            <div className="repeater">
+              <ul>
+                <List
+                  width={300}
+                  height={300}
+                  rowCount={this.state.payments.length}
+                  rowHeight={20}
+                  rowRenderer={() => null}>
+                </List>
+              </ul>
+            </div>
             <div className="mui-container-fluid">
               <br/>
-              Made with ♥ <a>@HackZurich2017</a>
+              <h1>Banking.io</h1>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+                sollicitudin volutpat molestie. Nullam id tempor nulla. Aenean sit amet
+                urna et elit pharetra consequat. Aliquam fringilla tortor vitae lectus
+                tempor, tempor bibendum nunc elementum. Etiam ultrices tristique diam,
+                vitae sodales metus bibendum id. Suspendisse blandit ligula eu fringilla
+              </p>
             </div>
-          </footer>
+          </div>
         </Container>
       </BrowserRouter>
     )
   }
 }
 
-export default App
+export default Payments

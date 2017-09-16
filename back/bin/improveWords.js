@@ -19,5 +19,5 @@ console.log(wordA.soundsLike(wordB))
 console.log('phonetics rock'.tokenizeAndPhoneticize())
 
 var natural = require('natural');
-console.log(natural.JaroWinklerDistance(wordA,wordB))
-console.log(natural.JaroWinklerDistance('not', 'same'));
+console.log(natural.JaroWinklerDistance(wordA, wordB))
+console.log(natural.JaroWinklerDistance('not', 'same'))

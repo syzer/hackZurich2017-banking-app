@@ -25,6 +25,14 @@ const data = [
   }
 ]
 
+const formatAmount = (data) => {
+  let amount = data.entities.find(({type}) =>
+    ['builtin.currency', 'builtin.number'].includes(type))
+
+  console.warn(amount)
+  return amount ? Number(amount.entity.split(' ').shift()) : 30
+}
+
 // TODO load, pay, repayment
 const informConnectedClients = (io) => (data) => {
   // {intent: data.topScoringIntent.intent, entities: data.entities}
@@ -37,11 +45,10 @@ const informConnectedClients = (io) => (data) => {
   if (data.intent === 'repayment') {
     data.intent = 'pay'
   }
-  data.entities.filter(({type}) => ['builtin.currency', 'builtin.number'].includes(type))
-
+  const amount = formatAmount(data)
   console.warn('postPayment', data.topScoringIntent)
 
-  io.emit('payment', {payment: {user: 123, amount: 400}})
+  io.emit('payment', {payment: {user: 123, amount}})
 
   return data
 }
@@ -63,7 +70,7 @@ module.exports = {
           .then(() =>
             ml.getIntent(`${intent.label}  ${sentence.message}`))
           .then(informConnectedClients(io))
-          .then(console.log)
+          // .then(console.log)
           .catch(err => console.error(err.Error || err))
 
         // socket.emit('talkback', {response: {message: 'Did not understand the command.'}})
