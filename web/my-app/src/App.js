@@ -11,6 +11,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import { FloatingActionButton } from 'material-ui'
 import recognizeSpeech from './Speech'
 import AlertDialog from './AlertDialog'
+// import * as speech from 'microsoft-speech-browser-sdk'
 
 injectTapEventPlugin()
 
@@ -19,11 +20,21 @@ class App extends Component {
     super(props)
     const socket = global.io.connect('http://localhost:4000')
 
+    this.state = {
+      name: 'Banking-app',
+      party: ['Mark', 'Lukas', 'Mel', 'Ivan'].map(e => ({name: e})),
+      record: false,
+      blobObject: null,
+      isRecording: false,
+      socket,
+      messages: []
+    }
+
     socket.on('news', data => {
       console.log(data)
     })
 
-    // TODO eunrecognized conversation from server
+    // TODO unrecognized conversation from server
     socket.on('talkback', data => {
       console.log('Talkback data received: ', data)
     })
@@ -36,8 +47,10 @@ class App extends Component {
     })
 
     //TODO to payment and also loan
-    socket.on('loan', data => {
-      // this.setState()
+    socket.on('loan', newLoan => {
+      this.setState({
+        messages: this.messages.concat([newLoan])
+      })
     })
 
     socket.on('error', err => {
@@ -45,15 +58,8 @@ class App extends Component {
       console.warn('Backend error? , is it online?')
     })
 
-    this.state = {
-      name: 'Banking-app',
-      party: ['Mark', 'Lukas', 'Mel', 'Ivan'].map(e => ({name: e})),
-      record: false,
-      blobObject: null,
-      isRecording: false,
-      socket,
-      messages: []
-    }
+
+    console.warn(process.env.REACT_APP_SECRET)
   }
 
   onStart = () => {
@@ -104,11 +110,6 @@ class App extends Component {
     return (
       <Container>
         <div>
-          <iframe
-            width="350"
-            height="430"
-            src="https://console.api.ai/api-client/demo/embedded/e092071a-5dcb-4983-8264-51dafd31f867">
-          </iframe>
           <br/>
           <br/>
           <br/>
