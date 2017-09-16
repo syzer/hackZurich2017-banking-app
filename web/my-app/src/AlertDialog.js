@@ -3,8 +3,9 @@ import { Dialog, FlatButton } from 'material-ui'
 
 const customContentStyle = {
   width: '100%',
-  maxWidth: 'none',
+  maxWidth: 'none'
 }
+
 // props: isOpen, message
 export default class AlertDialog extends Component {
   constructor (props) {
