@@ -1,9 +1,6 @@
 #!/usr/bin/env node
 
-const promisify = require('util.promisify')
-const fs = require('fs')
-const writeFileAsync = promisify(fs.writeFile)
-const appendFileAsync = promisify(fs.appendFile)
+const db = require('../lib/db')
 const app = require('../app')
 const debug = require('debug')('back:server')
 const http = require('http')
@@ -19,15 +16,10 @@ app.set('port', port)
  * Create HTTP server.
  */
 
-const server = http.createServer(app)
-const io = require('socket.io')(server)
-// const server = http.createServer(app)
-
 /**
  * Listen on provided port, on all network interfaces.
  */
-
-server.listen(port)
+const server = http.createServer(app)
 server.on('error', onError)
 server.on('listening', onListening)
 
@@ -91,22 +83,27 @@ function onListening () {
   console.log('Listening on ' + bind)
 }
 
+const io = require('socket.io')(server)
+server.listen(port)
+module.exports = io
+
 io.on('connection', socket => {
   socket.emit('news', { hello: 'world' })
-  socket.on('speech', data => {
-    console.log(data)
 
-    writeFileAsync('../data/file.webm', data.blob.toString())
-      .then(console.log)
-      .catch(console.error)
-  })
+  // TODO switch maybe to waw
+  // socket.on('speech', data => {
+  //   console.log(data)
+  //
+  //   db.postAudio(data.blob.toString())
+  //     .then(console.log)
+  //     .catch(console.error)
+  // })
 
   socket.on('text', (data) => {
     console.log('text', data)
-    appendFileAsync('../data/user.conversations.json', '\n' + JSON.stringify(data))
+    data.user = 123 // default user
+    db.postConversation(data)
       .then(console.log)
       .catch(console.error)
   })
 })
-
-module.exports = io
