@@ -69,6 +69,12 @@ def upload_file():
     </form>
     '''
 
+@app.route('/robot/<action>')
+def show_user_profile(action):
+    # show the user profile for that user
+    return 'Robot does %s' % action
+
+
 
 import http.client, urllib.request, urllib.parse, urllib.error, base64
 key=os.environ["AZURE_LUIS_KEY"]
