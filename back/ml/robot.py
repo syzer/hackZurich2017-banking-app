@@ -1,14 +1,15 @@
 import requests
 from requests.auth import HTTPDigestAuth
 import urllib
-
+import os
 
 # Thanks to Phaiax  for fixing this
 
 def moveRobot(arm,action):
 
+    robot_ip=os.environ["ROBOT_IP"]
 
-    url = 'http://[VM_IP]/rw'
+    url = 'http://'+robot_ip+'/rw'
     auth = HTTPDigestAuth('Default User', 'robotics')
 
     session = requests.session()
@@ -66,6 +67,9 @@ gesture_dict = {
    'no':(['T_ROB_R','SayNo'],),
    'shaking':(['T_ROB_R','ShakingHands'],)
  }
+
+def get_gesture_list():
+    return gesture_dict.keys()
 
 
 def gesture(name):

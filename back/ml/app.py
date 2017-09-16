@@ -69,9 +69,19 @@ def upload_file():
     </form>
     '''
 
+from robot import gesture
+from robot import get_gesture_list
+@app.route('/robot')
+def robot_root():
+    links = ''
+    for gest in get_gesture_list():
+        links += "<a href=/robot/"+gest+">"+gest+"</a><br/>"
+    return links, 200
+
+
 @app.route('/robot/<action>')
-def show_user_profile(action):
-    # show the user profile for that user
+def robot(action):
+    gesture(action)
     return 'Robot does %s' % action, 200
 
 from flask import request
@@ -90,6 +100,8 @@ def intent():
     url = "https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/12011bc9-fe5b-4da5-8268-376aed698141?subscription-key="+luis_key+"&verbose=true&timezoneOffset=0&q="+statement
     luis_json = urllib.request.urlopen(url).read()
     return luis_json, 200
+
+
 
 
 import http.client, urllib.request, urllib.parse, urllib.error, base64
