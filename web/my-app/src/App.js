@@ -4,24 +4,31 @@ import './App.css'
 import styles from './index.css'
 import Container from 'muicss/lib/react/container'
 import { ReactMic } from 'react-mic'
-import MicrophoneOn                from 'material-ui/svg-icons/av/mic';
-import MicrophoneOff               from 'material-ui/svg-icons/av/stop';
+import MicrophoneOn from 'material-ui/svg-icons/av/mic'
+import MicrophoneOff from 'material-ui/svg-icons/av/stop'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { FloatingActionButton } from 'material-ui'
+import recognizeSpeech from './Speech'
 
 injectTapEventPlugin()
 
 class App extends Component {
   constructor (props) {
     super(props)
+    const socket = global.io.connect('http://localhost:4000')
+
+    socket.on('news', data => {
+      console.log(data)
+    })
 
     this.state = {
       name: 'Banking-app',
       party: ['Mark', 'Lukas', 'Mel', 'Ivan'].map(e => ({name: e})),
       record: false,
       blobObject: null,
-      isRecording: false
+      isRecording: false,
+      socket
     }
   }
 
@@ -30,6 +37,11 @@ class App extends Component {
   }
 
   startRecording = () => {
+    recognizeSpeech(['lets', 'record'], (event) => {
+      const lastResult = event.results[0][0].transcript
+      console.log('.', lastResult)
+      this.state.socket.emit('text', {[new Date()]: lastResult})
+    })
     this.setState({
       record: true,
       isRecording: true
@@ -45,6 +57,7 @@ class App extends Component {
 
   onStop = (recordedBlob) => {
     console.log('recordedBlob is: ', recordedBlob)
+    this.state.socket.emit('speech', recordedBlob)
   }
 
   render () {
