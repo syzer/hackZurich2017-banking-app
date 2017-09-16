@@ -10,6 +10,7 @@
     "react-mic": "^8.0.0",
     "react-scripts": "1.0.13",
     "react-tap-event-plugin": "^2.0.1",
+    "react-virtualized": "^9.9.0",
     "recorder.js": "^1.2.2",
     "recorderjs": "^1.0.1",
     "socket.io": "^2.0.3"

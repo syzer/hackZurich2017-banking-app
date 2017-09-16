@@ -9,6 +9,7 @@ import MicrophoneOff from 'material-ui/svg-icons/av/stop'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { FloatingActionButton } from 'material-ui'
+import { List } from 'react-virtualized'
 import recognizeSpeech from './Speech'
 import AlertDialog from './AlertDialog'
 
@@ -19,25 +20,40 @@ class App extends Component {
     super(props)
     const socket = global.io.connect('http://localhost:4000')
 
+    this.state = {
+      name: 'Banking-app',
+      party: ['Mark', 'Lukas', 'Mel', 'Ivan'].map(e => ({name: e})),
+      record: false,
+        blobObject: null,
+        isRecording: false,
+        socket,
+        messages: [],
+        payments: [],
+        loans: [],
+        news: []
+    }
     socket.on('news', data => {
       console.log(data)
+      this.state.news.concat(data)
     })
+
 
     // TODO eunrecognized conversation from server
     socket.on('talkback', data => {
       console.log('Talkback data received: ', data)
+    this.state.message.concat(data.message)
     })
 
     //TODO to payment and also loan
     socket.on('payment', data => {
       //TODO show alert
-      console.warn(data)
-      this.onDialogOpen(data.payment.amount)
+      console.log(data)
+      this.state.payments.concat(data.payment)
     })
 
     //TODO to payment and also loan
     socket.on('loan', data => {
-      // this.setState()
+      this.state.payments.concat(data.loan)
     })
 
     socket.on('error', err => {
@@ -45,15 +61,6 @@ class App extends Component {
       console.warn('Backend error? , is it online?')
     })
 
-    this.state = {
-      name: 'Banking-app',
-      party: ['Mark', 'Lukas', 'Mel', 'Ivan'].map(e => ({name: e})),
-      record: false,
-      blobObject: null,
-      isRecording: false,
-      socket,
-      messages: []
-    }
   }
 
   onStart = () => {
@@ -189,11 +196,29 @@ class App extends Component {
         </header>
         <div id="content-wrapper">
           <div className="mui--appbar-height"/>
-          <div className="repeater">
-            <ul>
-              {this.messages}
-            </ul>
-          </div>
+    <div className="repeater">
+      <ul>
+        {this.messages}
+      </ul>
+    </div>
+    <div className="repeater">
+      <ul>
+          {this.state.payments}
+      </ul>
+    </div>
+
+  <div className="repeater">
+    <ul>
+      <List
+        width={300}
+        height={300}
+        rowCount={this.state.loans.length}
+        rowHeight={20}
+      >
+
+      </List>
+    </ul>
+  </div>
           <div className="mui-container-fluid">
             <br/>
             <h1>Banking.io</h1>
