@@ -9,20 +9,20 @@ const defaultData = {
   date: '2017-09-16T09:26:15.020Z'
 }
 
+const handlePayments = socket => {
+  console.log(`a user connected ${socket.id}`)
+
+  socket.emit('news', {payments: 'online'})
+
+  socket.on('disconnect', () =>
+    console.log(`user disconnected ${socket.id}`))
+}
+
 module.exports = {
   socketHandler (io) {
-    io.on('connection', socket => {
-      console.log(`a user connected ${socket.id}`)
-
-      socket.emit('news', {payments: 'online'})
-
-      socket.emit('payments', {payment: {user: 123, amount: 400}})
-
-      socket.on('disconnect', () =>
-        console.log(`user disconnected ${socket.id}`)
-      )
-    })
+    io.on('connection', handlePayments)
   },
+  handlePayments,
   httpHandler (express) {
     return express.Router().post('/', (req, res, next) => {
       console.log(req.body, typeof req.body)

@@ -25,42 +25,37 @@ class App extends Component {
       name: 'Banking-app',
       party: ['Mark', 'Lukas', 'Mel', 'Ivan'].map(e => ({name: e})),
       record: false,
-        blobObject: null,
-        isRecording: false,
-        socket,
-        messages: [],
-        payments: [],
-        loans: [],
-        news: []
+      blobObject: null,
+      isRecording: false,
+      socket,
+      messages: [],
+      payments: [],
+      loans: [],
+      news: []
     }
 
     socket.on('news', data => {
       console.log(data)
-      this.state.news.concat(data)
     })
 
     // TODO unrecognized conversation from server
     socket.on('talkback', data => {
       console.log('Talkback data received: ', data)
-      this.state.message.concat(data.message)
     })
 
-    //TODO to payment and also loan
     socket.on('payment', data => {
-      //TODO show alert
-      console.log(data)
-      this.state.payments.concat(data.payment)
+      console.log('server payment', data)
+      this.setState({
+        payments: this.state.payments.concat([data.payment])
+      })
+      // TODO
+      // this.onDialogOpen(data.payment.amount)
     })
 
-    //TODO to payment and also loan
-    socket.on('loan', data => {
-      this.state.payments.concat(data.loan)
-      /*
-      socket.on('loan', newLoan => {
-        this.setState({
-        messages: this.messages.concat([newLoan])
+    socket.on('loan', newLoan => {
+      this.setState({
+        loans: this.loans.concat([newLoan])
       })
-      */
     })
 
     socket.on('error', err => {
@@ -68,7 +63,6 @@ class App extends Component {
       console.warn('Backend error? , is it online?')
     })
 
-    console.warn(process.env.REACT_APP_SECRET)
   }
 
   onStart = () => {
@@ -199,29 +193,28 @@ class App extends Component {
         </header>
         <div id="content-wrapper">
           <div className="mui--appbar-height"/>
-    <div className="repeater">
-      <ul>
-        {this.state.messages}
-      </ul>
-    </div>
-    <div className="repeater">
-      <ul>
-          {this.state.payments}
-      </ul>
-    </div>
+          <div className="repeater">
+            <ul>
+              {this.state.messages}
+            </ul>
+          </div>
+          <div className="repeater">
+            <ul>
+              {this.state.payments}
+            </ul>
+          </div>
 
-  <div className="repeater">
-    <ul>
-      <List
-        width={300}
-        height={300}
-        rowCount={this.state.loans.length}
-        rowHeight={20}
-      >
-
-      </List>
-    </ul>
-  </div>
+          <div className="repeater">
+            <ul>
+              <List
+                width={300}
+                height={300}
+                rowCount={this.state.loans.length}
+                rowHeight={20}
+                rowRenderer={() => null}>
+              </List>
+            </ul>
+          </div>
           <div className="mui-container-fluid">
             <br/>
             <h1>Banking.io</h1>
