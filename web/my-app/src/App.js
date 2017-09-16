@@ -88,6 +88,11 @@ class App extends Component {
     return (
       <Container>
         <div>
+          <iframe
+            width="350"
+            height="430"
+            src="https://console.api.ai/api-client/demo/embedded/e092071a-5dcb-4983-8264-51dafd31f867">
+          </iframe>
           <br/>
           <br/>
           <br/>
