@@ -17,22 +17,23 @@ module.exports = {
       socket.on('postConversation', (data) => {
         data.user = 123 // default user
         console.log('postConversation', data)
-        const sentence = data['message']
-        console.log('Sentence is: ', sentence)
-        const verb = sentence.split(' ')[0].toLowerCase()
-
-        switch (verb) {
-          case 'pay':
-            const userInput = data[1]
-            const amountInput = data[2]
-            // TODO payments api
-            socket.emit('payment', {payment: {user: userInput, amount: amountInput}})
-            break
-          default:
-            socket.emit('talkback', {response: {message: 'Did not understand the command.'}})
-            // Do nothing for now. TODO: do something meaningful here
-            break
-        }
+        // TODO use lib/ml
+        // const sentence = data['message']
+        // console.log('Sentence is: ', sentence)
+        // const verb = sentence.split(' ')[0].toLowerCase()
+        //
+        // switch (verb) {
+        //   case 'pay':
+        //     const userInput = data[1]
+        //     const amountInput = data[2]
+        //     // TODO payments api
+        //     socket.emit('payment', {payment: {user: userInput, amount: amountInput}})
+        //     break
+        //   default:
+        //     socket.emit('talkback', {response: {message: 'Did not understand the command.'}})
+        //     // Do nothing for now. TODO: do something meaningful here
+        //     break
+        // }
         db.postConversation(data)
           .then(console.log)
           .catch(console.error)
