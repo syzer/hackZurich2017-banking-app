@@ -14,3 +14,7 @@ http://robot-machine.herokuapp.com/intent?statement=hey%20Mark%20spear
 http://robot-machine.herokuapp.com/intent?statement=buy+me+some+stocks
 http://robot-machine.herokuapp.com/intent?statement=i+confirm
 ```
+
+Our bot First draft:
+
+https://console.actions.google.com/?pli=1
