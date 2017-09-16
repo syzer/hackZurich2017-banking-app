@@ -77,7 +77,7 @@ class App extends Component {
     recognizeSpeech(['lets', 'record'], (event) => {
       const lastResult = event.results[0][0].transcript
       console.log('.', lastResult)
-      this.state.socket.emit('postConversation', {[new Date()]: lastResult})
+      this.state.socket.emit('postConversation', {message: lastResult})
     }, error => {
       this.onDialogOpen('Could not understand you')
     })
