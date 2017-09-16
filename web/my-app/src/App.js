@@ -10,6 +10,7 @@ import MicrophoneOff from 'material-ui/svg-icons/av/stop'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { FloatingActionButton } from 'material-ui'
 import recognizeSpeech from './Speech'
+import AlertDialog from './AlertDialog'
 
 injectTapEventPlugin()
 
@@ -58,16 +59,25 @@ class App extends Component {
     console.log('You can tap into the onStart callback')
   };
 
+  onDialogOpen = (message) => {
+    this.setState({
+      dialogMessage: message,
+      isDialogOpen: true
+    })
+  }
+
   startRecording = () => {
-      recognizeSpeech(['lets', 'record'], (event) => {
-          const lastResult = event.results[0][0].transcript
-          console.log('Transcription is:', lastResult)
-          this.state.socket.emit('talk', {'message': lastResult})
-      })
-      this.setState({
-          record: true,
-          isRecording: true
-      });
+    recognizeSpeech(['lets', 'record'], (event) => {
+      const lastResult = event.results[0][0].transcript
+      console.log('.', lastResult)
+      this.state.socket.emit('postConversation', {[new Date()]: lastResult})
+    }, error => {
+      this.onDialogOpen('Could not understand you')
+    })
+    this.setState({
+      record: true,
+      isRecording: true
+    })
   };
 
   stopRecording = () => {
@@ -83,13 +93,29 @@ class App extends Component {
     this.state.socket.emit('speech', recordedBlob)
   };
 
+  onDialogClose = () => {
+    this.setState({
+      isDialogOpen: false
+    })
+  }
+
   render () {
     return (
       <Container>
         <div>
+          <iframe
+            width="350"
+            height="430"
+            src="https://console.api.ai/api-client/demo/embedded/e092071a-5dcb-4983-8264-51dafd31f867">
+          </iframe>
           <br/>
           <br/>
           <br/>
+          <AlertDialog
+            isOpen={this.state.isDialogOpen}
+            message={this.state.dialogMessage}
+            onDialogClose={this.onDialogClose}
+          />
           <ReactMic
             record={this.state.isRecording}
             className="sound-wave"

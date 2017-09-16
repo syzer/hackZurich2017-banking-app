@@ -2,8 +2,105 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f189a214-2ff1-4464-bffc-29c88057825d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/back/routes/conversations.js" afterPath="$PROJECT_DIR$/back/routes/conversations.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/back/routes/payments.js" afterPath="$PROJECT_DIR$/back/routes/payments.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/my-app/src/AlertDialog.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/haste-map-ce77ab2d3098e8ea0e3b3c44d3056383-96223bb2988fb91512d5794839285397" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/02/App_02dca83f2cd5acc4c29130883f39bcb7" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/03/AppContainer_03565eab3da1d04bea0ba0347ecc41d6" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/04/XMLHttpRequest_04b139394517801cbc21222a9db52ffc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/05/ReactNativeFeatureFlags_05c899785610f561c0ad720c3aceaf9a" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/06/PooledClass_06c87d6314112146da981b2efd90e918" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/07/EventSubscriptionVendor_07b2e1ba3f675b5c1f32b13e897d8d96" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/09/ImageResizeMode_09a676d4312255d85d3b27d5ca7db5ff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/0c/PixelRatio_0c8bb6b4ddcc832f0e7385c3e55a3f4c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/0e/TextStylePropTypes_0e025c8ab9e504f2bc42ebe1c7e20cbe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/15/Position_15eed3d42f6f7ce032d826f89d46a174" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/18/View_18c8e89d3323acab58f4d5269942e112" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/19/defineLazyObjectProperty_19d66cdde80926c9a6760669c493771a" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/1b/mergeInto_1b16105ab0fc1e91ee1ba28d05051f15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/1e/StyleSheet_1e0ef3da68a1dc9d2f6b7cce6a2da3c1" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/27/LayoutPropTypes_271509cc15795c51f189578a21143cb8" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/27/Queue_279d416a271b4368578b6252da16d663" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/29/sizesDiffer_290340c5de9fd0f6d552b0d7f1532893" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/2a/Expo_2a6fe58e7614deb7246dc9fbb25bdd37" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/2f/NetworkAgent_2fe9b65224396c9ff31685344f2215e2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/31/JSTimers_31208fd68e76f53faa22230ac0e34679" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/38/ImageStylePropTypes_385c3f2dab71e299a1e282459664686e" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/38/ReactNativeStack-dev_38c3e38493ba3a5b3428410b6803dee3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/39/RCTNetworking.ios_396e86066abc3910a436309befb41d44" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/39/stringifySafe_395eb8330980ddcee897cae228b2c4bc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/3a/Permissions_3ac422760e389b2956aa9ed9b6e68e05" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/3b/createReactNativeComponentClass_3bad1fff897bc984e96c5fcf435ba091" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/3e/InitializeCore_3ec89fb70da4456d4132cd99c74ab1b9" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/3e/processTransform_3e6c654487208dfdb3ac23b1e4dfdc16" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/3f/JSInspector_3ff0c3b03850b5fb25692bd465b19c31" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/3f/NativeMethodsMixin_3f201592ae81c9c8439c8218d28aec7c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/40/I18nManager_406f16906ac35ba05d04f4da9dc6280b" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/46/ReactNativeStyleAttributes_464b155cef3ea5242f2bc7b93331a48e" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/4e/InspectorAgent_4ed4ad60af7e80261491771fa42ddfb9" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/52/Dimensions_520a9d04be8c11014727f6d18e56d323" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/55/ExceptionsManager_55e365fa4afb7681ff05b38e60d51703" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/56/TVEventHandler.ios_5663654ddba17cdbf9b227ca81c4392a" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/59/binaryToBase64_594e67d2217d843b1f9a9f75009e05ef" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/5b/EventSubscription_5b3f4f0de225d153fd7c03fdadd48013" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/5b/Location_5b56cd033e862643b588ddc6b65bbb25" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/5f/mockComponent_5fd581ab01923def81a9ae12a7554d5c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/68/Constants_68e3912ab2cc1e3d73ac984748fde817" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/68/deepFreezeAndThrowOnMutationInDev_68e45d1fd61c73c0dc5af8f395aacea9" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/6a/Set_6ac4f051931693715ce756c5f6639c51" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/6a/normalizeColor_6a72924b3280bc60a2311bb69c8d4448" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/70/ReactNative_701820221a9f8bf0955d22d5b811fcce" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/73/StyleSheetPropType_735a6bf29cb85474e64ad13e4a6fa395" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/77/App.test_77ed1213bbb123f4bef85f8caac8c005" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/7b/Logs_7b2e54b3349b551eb47334d43daefcc9" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/7d/guid_7d2acd3497fc955c532c03e05f01eb6f" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/7d/setup_7dcfb0664e0c32656d35296578c234ee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/81/Text_8115ad0147eb9c2c3a3ec95b7852d745" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/82/deepDiffer_82a58b0a844136dfb64904e2e1e69a13" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/84/WebSocketEvent_8422afe9fe16b1938bbb34e94c387929" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/86/toIterator_86e2eee6ce1e892547690f3bff44ad9e" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/88/EmitterSubscription_883ced079cc012f1620952c5ad72ca6c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/8a/ViewAccessibility_8ae792b44425751f0e9f36fc3bbc069f" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/8b/ErrorUtils_8bf90f385790d533b764e663dec22bd3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/8d/BatchedBridge_8dfe77508650d0bb24f2ef2a5e3859dd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/8d/createStrictShapeTypeChecker_8d49951ea7f09278dcada437b2d70bab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/8d/deprecatedPropType_8d9413b3b6342116cf7bc5269b12a289" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/90/convertRequestBody_906772e308e979f34b4ed09641d08245" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/91/event-target-shim_91e7b27ee0c2d02c9e7a11047d71d769" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/94/Map_9420911b128114241e1f52dfa749b5ff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/99/Touchable_999be9875e55f2466c8d624901ef8f1b" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/a6/RCTDebugComponentOwnership_a6ac5c07772e18ed5739354ccce05f46" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/a8/WebSocket_a84eee079f60c55c9b613d3cf7e4e062" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/a8/mergeFast_a84f9ea6ab23bd3abfc28c2bf367fd9f" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/a9/Modal_a999f754ee475376120df34d58560a4d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/a9/TextInputState_a9ad5606a6ebf78c369942215a84299b" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/b1/NativeEventEmitter_b1119781f8d02e62763ca30e52a8647c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/b1/mergeHelpers_b18236db7ec70b2439d4e89f6a79f616" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/b4/MessageQueue_b4cf23f109a79c5b10515daa642953ad" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/b9/ViewStylePropTypes_b9db10c81024891dbec24f51fd72b9be" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/bd/TransformPropTypes_bd2c8a991952cfef7d32b9ae1f0ecf36" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/be/merge_befb3f4b53a0d7533ec4962ec909317c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/c0/BoundingDimensions_c094b7d1eddc95e7b5a9c6ea41faecba" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/c3/RCTDeviceEventEmitter_c3117393b948021fbc2b9b2a53ef0075" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/c6/EventEmitter_c6884e9a17fd2cdc6e5cd627fe9a4b85" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/c9/Platform.ios_c9392d082aa37bb25e0eb8cea4f80657" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/ca/RCTEventEmitter_ca95c788381c1bdbcf5042a71d945058" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/ca/ViewPropTypes_caa8405a3236a26eae0bbe673b284016" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/d0/ReactNativeViewAttributes_d078d54a2a37ff052603bd0ba8a488e1" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/d9/MissingNativeEventEmitterShim_d91d34c4bcda1eb4f43fe7f3876600e9" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/da/_shouldPolyfillES6Collection_da26311357ba0078448a804805fa2945" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/da/flattenStyle_daf94f59f69c9f3c3f62baf3ea70c4fe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/dc/setupDevtools_dc97ce7b994d3b11ed34330b9f0971ef" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/e1/StyleSheetValidation_e1c4a8bfe33d3708089823f7f8dcba67" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/e3/processColor_e34914e091e0c73e76d3a288abf38cdd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/e5/FormData_e5ed9d1d67394e73197193591931d78c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/e6/MatrixMath_e65c7765e12eb077e17f50c1ab583c4b" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/eb/Systrace_ebbef8451b41280a72f9b17cc50fddb9" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/ec/react-native-implementation_ec4f268635e1294b33f0419ef6f631f9" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/f0/ColorPropType_f0c31a9409afef4dfe8b4c4cceab5783" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/f0/EdgeInsetsPropType_f07f032c532205d261d684c309d08bbd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/f0/ShadowPropTypesIOS_f0157ee584389dd7c4db8451292c4c3a" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/jest-transform-cache-ce77ab2d3098e8ea0e3b3c44d3056383-5c64ccaa0df5cd94cd11fb935d080ed6/f4/HMRClient_f45b95c73182a3bcae8fcd3b53e08c1a" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/front/jest_0/perf-cache-ce77ab2d3098e8ea0e3b3c44d3056383-08a05f132eee5336a7fa2a7efd1abec9" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/my-app/src/App.js" afterPath="$PROJECT_DIR$/web/my-app/src/App.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,8 +118,18 @@
       <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/my-app/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="32" column="46" lean-forward="false" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+            <state relative-caret-position="973">
+              <caret line="246" column="18" lean-forward="true" selection-start-line="246" selection-start-column="18" selection-end-line="246" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/back/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1122">
+              <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -32,7 +139,7 @@
         <entry file="file://$PROJECT_DIR$/back/routes/conversations.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1034">
-              <caret line="47" column="6" lean-forward="true" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+              <caret line="47" column="6" lean-forward="false" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -54,6 +161,7 @@
         <option value="$PROJECT_DIR$/back/app.js" />
         <option value="$PROJECT_DIR$/back/routes/payments.js" />
         <option value="$PROJECT_DIR$/back/routes/conversations.js" />
+        <option value="$PROJECT_DIR$/back/.gitignore" />
         <option value="$PROJECT_DIR$/web/my-app/src/App.js" />
       </list>
     </option>
@@ -63,13 +171,6 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/Native/bankbot/node_modules" />
-    <handled-path value="$PROJECT_DIR$/Native/node_modules" />
-    <handled-path value="$PROJECT_DIR$/back/node_modules" />
-    <handled-path value="$PROJECT_DIR$/front/node_modules" />
-    <handled-path value="$PROJECT_DIR$/web/my-app/node_modules" />
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/front/package.json" />
@@ -110,8 +211,7 @@
             <path>
               <item name="hackZurich2017-banking-app" type="b2602c69:ProjectViewProjectNode" />
               <item name="hackZurich2017-banking-app" type="462c0819:PsiDirectoryNode" />
-              <item name="back" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="Native" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hackZurich2017-banking-app" type="b2602c69:ProjectViewProjectNode" />
@@ -123,13 +223,6 @@
               <item name="hackZurich2017-banking-app" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="my-app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hackZurich2017-banking-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hackZurich2017-banking-app" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hackZurich2017-banking-app" type="b2602c69:ProjectViewProjectNode" />
@@ -183,12 +276,12 @@
       <updated>1505519083657</updated>
       <workItem from="1505519085797" duration="2997000" />
       <workItem from="1505525202764" duration="14320000" />
-      <workItem from="1505560032440" duration="7436000" />
+      <workItem from="1505560032440" duration="8055000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24753000" />
+    <option name="totallyTimeSpent" value="25372000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="3842" height="2133" extended-state="6" />
@@ -319,12 +412,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="10" column="33" lean-forward="false" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-            <element signature="e#2792#4401#0" expanded="false" />
-            <element signature="e#4418#5058#0" expanded="false" />
-            <element signature="e#5075#8169#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -479,12 +567,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1100">
           <caret line="59" column="25" lean-forward="false" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-            <element signature="e#2792#4401#0" expanded="false" />
-            <element signature="e#4418#5058#0" expanded="false" />
-            <element signature="e#5075#8169#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -555,15 +638,23 @@
     <entry file="file://$PROJECT_DIR$/back/routes/conversations.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1034">
-          <caret line="47" column="6" lean-forward="true" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+          <caret line="47" column="6" lean-forward="false" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/my-app/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="32" column="46" lean-forward="false" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+        <state relative-caret-position="973">
+          <caret line="246" column="18" lean-forward="true" selection-start-line="246" selection-start-column="18" selection-end-line="246" selection-end-column="18" />
           <folding />
         </state>
       </provider>

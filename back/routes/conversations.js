@@ -30,6 +30,11 @@ module.exports = {
               // Do nothing for now. TODO: do something meaningful here
         }
 
+<<<<<<< HEAD
+=======
+      socket.on('postConversation', (data) => {
+        console.log('postConversation', data)
+>>>>>>> 079c110458cb9d4aa3a97a18b07fbb00dd63d937
         data.user = 123 // default user
         db.postConversation(data)
           .then(console.log)

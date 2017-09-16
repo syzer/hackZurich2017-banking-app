@@ -1,4 +1,4 @@
-function recognizeSpeech (phrases, onresult) {
+function recognizeSpeech (phrases, onresult, onError) {
   var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
   var SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList
   const grammar = '#JSGF V1.0; grammar phrase; public <phrase> = ' + phrases.join(' | ') + ';'
@@ -15,7 +15,10 @@ function recognizeSpeech (phrases, onresult) {
   recognition.onspeechend = () => {
     console.log('end', new Date())
   }
-  recognition.onerror = (event) => console.error(event)
+  recognition.onerror = (event) => {
+    console.error(event)
+    onError(event)
+  }
   recognition.onresult = onresult
 }
 
