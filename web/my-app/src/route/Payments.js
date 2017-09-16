@@ -4,29 +4,21 @@ import {BrowserRouter, Link, Route} from 'react-router-dom'
 import Container from 'muicss/lib/react/container'
 import Card from "react-material-card";
 
-const payments = [
-  {"payment": 400, "to": 123, "lat": 47.3769, "long": 8.5417, "date": "2017-09-16T09:26:15.020Z"},
-  {"payment": 300, "to": 123, "lat": 47.3769, "long": 8.5417, "date": "2017-09-16T09:26:15.020Z"},
-  {"payment": 200, "to": 123, "lat": 47.3769, "long": 8.5417, "date": "2017-09-16T09:26:15.020Z"},
-  {"payment": 100, "to": 123, "lat": 47.3769, "long": 8.7417, "date": "2017-09-16T09:26:15.020Z"},
-]
-
 class Payments extends Component {
   constructor(props) {
     super(props)
     const socket = global.io.connect('http://localhost:4000')
 
     this.state = {
-      payments,
+      payments: [],
     }
 
-    socket.on('getPayments', data => {
-      console.log('server payment', data)
+    socket.on('getPayments', payments => {
+      console.log('server payment', payments)
       this.setState({
-        payments: this.state.payments.concat([data.payment])
+        payments: this.state.payments.concat(payments)
       })
     })
-
   }
 
   showPayments = () => (
@@ -34,9 +26,9 @@ class Payments extends Component {
       <Card
         key={i}
         borderRadius={5}
-        style={{fontSize: 20, padding: 12, marginTop: 5}}
+        style={{fontSize: 20, padding: 12, margin: 5}}
         className="fancyCard">
-        {e.payment} to Mel
+        <span style={{color:'#DCEDC1'}}>{e.payment}</span> to Mel
       </Card>
     )
   )
