@@ -12,8 +12,34 @@ const colors = {
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.yellow,
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    backgroundColor: colors.green,
+
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+  imageBackground: {
+    resizeMode: 'cover'
+  },
+  chartContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  chart: {
+    width: 200,
+    height: 200,
+  },
 })
+
+export { colors }

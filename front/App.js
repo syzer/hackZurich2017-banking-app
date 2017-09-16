@@ -1,44 +1,90 @@
-import React from 'react'
+import React, { Component } from 'react'
 import TabNavigator from 'react-native-tab-navigator'
-import { Image, StyleSheet, Text, View } from 'react-native'
-import styles from './App.styles'
+import { Image, Text, View } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import styles, { colors } from './App.styles'
+import Chart from 'react-native-chart'
+import { Dimensions } from 'react-native'
 
 const home = 'home'
-export default class App extends React.Component {
 
-  constructor(props){
+const deviceW = Dimensions.get('window').width
+const basePx = 500
+const px2dp = (px) => px * deviceW / basePx
+
+const data = [
+  { 'number': 8, 'name': 'Fun activities' },
+  { 'number': 7, 'name': 'Dog' },
+  { 'number': 16, 'name': 'Food' },
+  { 'number': 23, 'name': 'Car' },
+  { 'number': 42, 'name': 'Rent' },
+  { 'number': 4, 'name': 'Misc' },
+]
+
+class Home extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+          <Chart
+            style={styles.chart}
+            data={data}
+            verticalGridStep={5}
+            type="line"
+            showDataPoint={true}
+            color={['#e1cd00']}
+          />
+        {/*<Image source={require('./Asset/background.jpeg')}/>*/}
+      </View>
+    )
+  }
+}
+
+class Profile extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Image source={require('./Asset/background-profile.jpeg')}/>
+      </View>
+    )
+  }
+}
+
+export default class App extends Component {
+
+  constructor(props) {
     super(props)
     this.state = {
       selectedTab: 'home'
     }
   }
 
-  render () {
+  render() {
     return (
       <View style={styles.container}>
-        <TabNavigator>
+        <TabNavigator style={styles.container}>
+
           <TabNavigator.Item
             selected={this.state.selectedTab === 'home'}
             title="Home"
-            // renderIcon={() => <Image source={...} />}
+            selectedTitleStyle={{ color: '#3496f0' }}
+            renderIcon={() =>
+              <Icon name="home" size={px2dp(22)} color={colors.green}/>}
             renderSelectedIcon={() =>
-              <Image height='30'  source={require('./Asset/bank.png')} />}
+              <Icon name="home" size={px2dp(22)} color={colors.green}/>}
             badgeText="1"
             onPress={() => this.setState({ selectedTab: 'home' })}>
-            {/*{homeView}*/}
-            <Text>My home</Text>
+            <Home/>
           </TabNavigator.Item>
+
           <TabNavigator.Item
             selected={this.state.selectedTab === 'profile'}
             title="Profile"
-            // renderIcon={() => <Image source={...} />}
-            // renderSelectedIcon={() => <Image source={...} />}
-            // renderBadge={() => <CustomBadgeView />}
+            selectedTitleStyle={{ color: '#3496f0' }}
+            renderIcon={() =>
+              <Icon name="user" size={px2dp(22)} color="#666"/>}
+            renderSelectedIcon={() => <Icon name="user" size={px2dp(22)} color="#3496f0"/>}
             onPress={() => this.setState({ selectedTab: 'profile' })}>
-            badgeText="1"
-            {/*{profileView}*/}
-            <Text>Profile</Text>
-
+            <Profile/>
           </TabNavigator.Item>
         </TabNavigator>
       </View>
