@@ -55,11 +55,9 @@ class App extends Component {
     //TODO to payment and also loan
     socket.on('loan', newLoan => {
       this.setState({
-      messages: this.messages.concat([newLoan])
-      console.log('server payment', data)
-      this.setState({
-        payments: this.state.payments.concat([data.payment])
+        messages: this.messages.concat([newLoan])
       })
+      console.log('server payment', newLoan)
       // TODO
       // this.onDialogOpen(data.payment.amount)
     })
