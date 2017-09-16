@@ -55,6 +55,7 @@ class App extends Component {
     })
   }
 
+  // TODO change it to WAV file
   onStop = (recordedBlob) => {
     console.log('recordedBlob is: ', recordedBlob)
     this.state.socket.emit('speech', recordedBlob)
@@ -73,10 +74,8 @@ class App extends Component {
             onStop={this.onStop}
             strokeColor="#000000"
             backgroundColor="#DCEDC1"/>
-          <button onTouchTap={this.startRecording} type="button">Start</button>
-          <button onTouchTap={this.stopRecording} type="button">Stop</button>
           <div>
-            <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio>
+            <audio ref="audioSource" controls="controls" src={this.state.blobURL}/>
           </div>
           <br/>
           <br/>
