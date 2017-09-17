@@ -14,7 +14,8 @@
     
 ## Demo
 
-- Pay jeff a beer
+- Pay Jeff a beer
+- Pay Ivan for a beer
 - How much money do I have left
 - I need to borrow money
 - Return 100 franks to Paul for the Bike

@@ -14,7 +14,7 @@ import * as ReactToastr from 'react-toastr'
 import Summary from './route/Summary'
 import Payments from './route/Payments'
 import SideBar from './route/SideBar'
-import {BrowserRouter, Route, withRouter, Redirect} from 'react-router-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
 import speech from 'speech-js'
 
 
@@ -51,11 +51,9 @@ class App extends Component {
     })
 
     socket.on('payment', data => {
-      console.log('server payment', data)
-      this.setState({
-        payments: this.state.payments.concat([data.payment])
-      })
+      console.log('Server payment', data)
       this.addAlert(data.payment.amount || 500)
+      speech.synthesis('Paid ' +  data.payment.amount + ' swiss franc', 'en-US')
     })
 
     // TODO
@@ -74,7 +72,6 @@ class App extends Component {
       console.log('Robot says: ', accountSummary)
       this.addMessage(accountSummary)
       speech.synthesis(accountSummary, 'en-US')
-      console.log(withRouter)
     })
 
   }

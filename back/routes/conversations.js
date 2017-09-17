@@ -1,8 +1,10 @@
 const db = require('../lib/db')
 const {onError} = require('../lib')
 const ml = require('../lib/ml')
-const {random} = require('lodash')
+const {random, sample} = require('lodash')
 const {robotDoes} = require('../lib/robot')
+const faker = require('faker')
+const intents = require('./intents/askStockPrice')
 
 const defaultData = {
   payment: 400,
@@ -31,41 +33,55 @@ const pickRobotAction = ({label}) => {
     sentence6: 'away',
     sentence7: 'kill',
     sentence8: 'no',
+    cannotUnderstand: 'noclue',
+    askStockPrice: 'handsup'
   }[label]
 }
 
 // just in case the robot is offline or crashes.. we don't wanna crash our frontend
 const pickRobotResponse = ({label}) => ({
-  sentence1: 'Sure',
+  sentence1: 'Sure, I did pay Jeff and deducted eight francs from your account',
   sentence2: 'Sorry, only two hundred swiss francs',
-  sentence3: 'According to Raiffeisen, you should borrow money from ABC, because they have lowest intrest rate',
+  sentence3: `According to Raiffeisen, you should borrow money from ABC, because they have a lowest interest rate`,
   sentence4: 'The debt has been repaid, and the Paul even was notified',
   sentence5: 'Here are some funds, that you might want to invest in.',
   sentence6: `They are investing in: ${db.getCompanies().join('and ')}`,
   sentence7: 'You are broke... again',
   sentence8: 'No can do',
+  cannotUnderstand: 'Could you repeat? I did not understand...',
+  askStockPrice: '900 swiss franks'
 })[label]
 
 // TODO classifier has more intents : load, pay, repayment, summary => use them
 const informConnectedClients = (socket, intent) => (mlAnswer) => {
   mlAnswer.date = new Date()
   console.warn('>', intent, mlAnswer.topScoringIntent)
+  console.log('>>', formatAmount(mlAnswer))
+
   db.postRecommendations(mlAnswer)
-  if (mlAnswer.intent === 'repayment') {
-    mlAnswer.intent = 'pay'
+
+  if (mlAnswer.topScoringIntent.intent === 'repayment') {
+    mlAnswer.topScoringIntent.intent = 'pay'
   }
 
-  if (mlAnswer.intent === 'pay') {
+  if (mlAnswer.topScoringIntent.intent === 'pay') {
     const amount = formatAmount(mlAnswer)
     return socket.emit('payment', {payment: {user: 123, amount}})
   }
 
-  // TODO
-  if (mlAnswer.topScoringIntent.intent === 'summary') {
+  // when summary and not and robot talk back to you
+  if (mlAnswer.topScoringIntent.intent === 'summary' && !intent.label.includes('sentence') ) {
     return db.getSummary().then(() =>
       `Last month you spend to much on ${db.getMostBoughtProducts().join(' and ')} with ${db.getUserFriends().join(' and ')}.  
       Also I recommend investing in ${db.getCompany()}`)
       .then(summary => socket.emit('getSummary', summary))
+  }
+
+  if (intent.label === 'askStockPrice') {
+    const symbol = sample(['GOOG', 'AAPL'])
+    return intents.askStockPrice(symbol)
+      .then(price =>
+        socket.emit('talkback', `The market stock price for ${symbol} is ${price}`))
   }
 
   const robotAction = pickRobotAction(intent)
