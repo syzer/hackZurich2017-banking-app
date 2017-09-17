@@ -86,7 +86,8 @@ const intents = [
     label: 'cannotUnderstand', keywords: [
     'I don\'t understand', 'lalalalala',
     'blah blah blah blah blah', 'Milano', 'I\'m tired', 'Idora Park',
-    'I do not want to talk'
+    'I do not want to talk',
+    'lalalala'
   ]
   }
 ]
