@@ -47,20 +47,23 @@ const pickRobotResponse = ({label}) => ({
 })[label]
 
 // TODO classifier has more intents : load, pay, repayment, summary => use them
-const informConnectedClients = (socket, intent) => (data) => {
-  console.warn('>', intent, data.topScoringIntent)
-
-  if (data.intent === 'repayment') {
-    data.intent = 'pay'
+const informConnectedClients = (socket, intent) => (mlAnswer) => {
+  mlAnswer.date = new Date()
+  console.warn('>', intent, mlAnswer.topScoringIntent)
+  db.postRecommendations(mlAnswer)
+  if (mlAnswer.intent === 'repayment') {
+    mlAnswer.intent = 'pay'
   }
-  if (data.intent === 'pay') {
-    const amount = formatAmount(data)
+
+  if (mlAnswer.intent === 'pay') {
+    const amount = formatAmount(mlAnswer)
     return socket.emit('payment', {payment: {user: 123, amount}})
   }
 
-  if (data.intent === 'summary') {
+  // TODO
+  if (mlAnswer.topScoringIntent.intent === 'summary') {
     return db.getSummary().then(() =>
-      `Last month you spend to much on beer with Mel and Frank. 
+      `Last month you spend to much on ${db.getMostBoughtProducts().join(' and ')} with ${db.getUserFriends().join(' and ')}.  
       Also I recommend investing in ${db.getCompany()}`)
       .then(summary => socket.emit('getSummary', summary))
   }
@@ -87,7 +90,7 @@ module.exports = {
           .then(() =>
             ml.getIntent(`${intent.label}  ${sentence.message}`))
           .then(informConnectedClients(socket, intent))
-          .catch(err => console.error(err.Error || err))
+          .catch(err => console.error(err.message || err))
       })
 
     })

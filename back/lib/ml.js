@@ -18,7 +18,7 @@ const intents = [
   },
   {label: 'loan', keywords: ['loan']},
   {label: 'invest', keywords: ['invest']},
-  {label: 'summary', keywords: ['summary', 'month qqq', 'status', 'where my money went last month']},
+  {label: 'summary', keywords: ['summary', 'show me what my name is', 'month qqq', 'status', 'where my money went last month']},
   // those are hardcoded for the demo
   {
     label: 'sentence1',

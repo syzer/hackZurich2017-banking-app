@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import './App.css'
-// import logo from './logo.svg'
-// import styles from './index.css'
 import Container from 'muicss/lib/react/container'
 import { ReactMic } from 'react-mic'
 import MicrophoneOn from 'material-ui/svg-icons/av/mic'
@@ -9,16 +7,14 @@ import MicrophoneOff from 'material-ui/svg-icons/av/stop'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { FloatingActionButton } from 'material-ui'
-import { List } from 'react-virtualized'
 import recognizeSpeech from './Speech'
 import AlertDialog from './AlertDialog'
 import words from './Words'
 import * as ReactToastr from 'react-toastr'
-// import * as speech from 'microsoft-speech-browser-sdk'
 import Summary from './route/Summary'
 import Payments from './route/Payments'
 import SideBar from './route/SideBar'
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Route, withRouter, Redirect} from 'react-router-dom'
 import speech from 'speech-js'
 
 
@@ -72,6 +68,13 @@ class App extends Component {
     socket.on('error', err => {
       console.error(err)
       console.warn('Backend error? , is it online?')
+    })
+
+    socket.on('getSummary', accountSummary => {
+      console.log('Robot says: ', accountSummary)
+      this.addMessage(accountSummary)
+      speech.synthesis(accountSummary, 'en-US')
+      console.log(withRouter)
     })
 
   }

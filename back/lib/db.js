@@ -4,7 +4,7 @@ const writeFileAsync = promisify(fs.writeFile)
 const readFileAsync = promisify(fs.readFile)
 const appendFileAsync = promisify(fs.appendFile)
 const faker = require('faker')
-const {range} = require('lodash')
+const {range, random} = require('lodash')
 
 // . dot is the same folder that npm start was called
 const postAudio = data => writeFileAsync('./data/file.webm', data.blob.toString())
@@ -14,17 +14,24 @@ const postLoan = data => appendFileAsync('./data/user.loan.json', '\n' + JSON.st
 const getPayments = () => readFileAsync('./data/user.payments.json', 'utf-8').then(str => str.split('\n').map(JSON.parse))
 const getCompany = () => `${faker.company.companyName()}`
 const getCompanies = () => range(3).map(getCompany)
+// the bank answers and intents we think user should do
+const postRecommendations = data => appendFileAsync('./data/user.recommendations.json', '\n' + JSON.stringify(data))
+const getUserFriends = () => range(random(2, 3)).map(() => faker.name.firstName())
+const getMostBoughtProducts = () => range(random(2)).map(() => faker.commerce.product())
 
 // TODO use that
 const getSummary = () => readFileAsync('./data/user.summary.json', 'utf-8').then(str => str.split('\n').map(JSON.parse))
 
 module.exports = {
-  postAudio,
-  postPayment,
-  postLoan,
-  postConversation,
-  getSummary,
-  getPayments,
   getCompanies,
-  getCompany
+  getCompany,
+  getPayments,
+  getSummary,
+  getUserFriends,
+  getMostBoughtProducts,
+  postAudio,
+  postConversation,
+  postLoan,
+  postPayment,
+  postRecommendations
 }
