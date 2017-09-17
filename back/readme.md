@@ -11,3 +11,14 @@
     - [X] What about my friends: `Where are my friends investing` (robot: away; `they are investing in: a, b, and c`)
     - [X] I lost everything: `Am I poor?` (robot: kill; res: `you are broke…again`)
     - [X] 5$ left: `I want to buy some Apple stocks` (robot: diss or no; res: `no can do`)
+    
+## Demo
+
+- Pay jeff a beer
+- How much money do I have left
+- I need to borrow money
+- Return 100 franks to Paul for the Bike
+- I want to invest my money
+- Where are my friends investing 
+- Am I poor?
+- I want to buy some Apple stocks

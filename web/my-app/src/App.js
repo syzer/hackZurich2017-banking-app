@@ -45,9 +45,9 @@ class App extends Component {
       news: []
     }
 
+    // endpoints online
     socket.on('news', data => console.log)
 
-    // TODO unrecognized conversation from server
     socket.on('talkback', robotMessage => {
       console.log('Robot says: ', robotMessage)
       this.addMessage(robotMessage)
@@ -74,10 +74,6 @@ class App extends Component {
       console.warn('Backend error? , is it online?')
     })
 
-  }
-
-  onStart = () => {
-    console.log('You can tap into the onStart callback')
   }
 
   onDialogOpen = (message) => {
@@ -134,7 +130,7 @@ class App extends Component {
     this.toastr.success(
       message,
       'Robot', {
-        timeOut: 2000,
+        timeOut: 5000,
         extendedTimeOut: 2000
       })
 

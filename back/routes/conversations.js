@@ -36,18 +36,18 @@ const pickRobotAction = ({label}) => {
 
 // just in case the robot is offline or crashes.. we don't wanna crash our frontend
 const pickRobotResponse = ({label}) => ({
-  sentence1: 'sure',
-  sentence2: 'sorry, only two hundred swiss francs',
-  sentence3: 'raiff estimate',
-  sentence4: 'debt has been repaid, maybe even paul notified',
-  sentence5: 'here are some funds',
-  sentence6: `they are investing in: ${db.getCompanies().join('and ')}`,
-  sentence7: 'you are broke…again',
-  sentence8: 'no can do',
+  sentence1: 'Sure',
+  sentence2: 'Sorry, only two hundred swiss francs',
+  sentence3: 'According to Raiffeisen, you should borrow money from ABC, because they have lowest intrest rate',
+  sentence4: 'The debt has been repaid, and the Paul even was notified',
+  sentence5: 'Here are some funds, that you might want to invest in.',
+  sentence6: `They are investing in: ${db.getCompanies().join('and ')}`,
+  sentence7: 'You are broke... again',
+  sentence8: 'No can do',
 })[label]
 
 // TODO classifier has more intents : load, pay, repayment, summary => use them
-const informConnectedClients = (io, intent) => (data) => {
+const informConnectedClients = (socket, intent) => (data) => {
   console.warn('>', intent, data.topScoringIntent)
 
   if (data.intent === 'repayment') {
@@ -55,19 +55,19 @@ const informConnectedClients = (io, intent) => (data) => {
   }
   if (data.intent === 'pay') {
     const amount = formatAmount(data)
-    return io.emit('payment', {payment: {user: 123, amount}})
+    return socket.emit('payment', {payment: {user: 123, amount}})
   }
 
   if (data.intent === 'summary') {
     return db.getSummary().then(() =>
       `Last month you spend to much on beer with Mel and Frank. 
       Also I recommend investing in ${db.getCompany()}`)
-      .then(summary => io.emit('getSummary', summary))
+      .then(summary => socket.emit('getSummary', summary))
   }
 
   const robotAction = pickRobotAction(intent)
   return robotDoes(robotAction)
-    .then(() => io.emit('talkback', pickRobotResponse(intent)))
+    .then(() => socket.emit('talkback', pickRobotResponse(intent)))
 }
 
 module.exports = {
@@ -83,10 +83,10 @@ module.exports = {
 
         const intent = ml.classify(sentence.message)
 
-        db.postConversation(sentence)
+        return db.postConversation(sentence)
           .then(() =>
             ml.getIntent(`${intent.label}  ${sentence.message}`))
-          .then(informConnectedClients(io, intent))
+          .then(informConnectedClients(socket, intent))
           .catch(err => console.error(err.Error || err))
       })
 
