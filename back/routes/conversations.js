@@ -53,7 +53,7 @@ const pickRobotResponse = ({label}) => ({
 })[label]
 
 // TODO classifier has more intents : load, pay, repayment, summary => use them
-const informConnectedClients = (socket, intent) => (mlAnswer) => {
+const informConnectedClients = (socket, intent, sentence) => (mlAnswer) => {
   mlAnswer.date = new Date()
   console.warn('>', intent, mlAnswer.topScoringIntent)
   console.log('>>', formatAmount(mlAnswer))
@@ -78,7 +78,7 @@ const informConnectedClients = (socket, intent) => (mlAnswer) => {
   }
 
   if (intent.label === 'askStockPrice') {
-    const symbol = sample(['GOOG', 'AAPL'])
+    const symbol = ml.classifyCompanySymbol(sentence.message)
     return intents.askStockPrice(symbol)
       .then(price =>
         socket.emit('talkback', `The market stock price for ${symbol} is ${price}`))
@@ -105,7 +105,7 @@ module.exports = {
         return db.postConversation(sentence)
           .then(() =>
             ml.getIntent(`${intent.label}  ${sentence.message}`))
-          .then(informConnectedClients(socket, intent))
+          .then(informConnectedClients(socket, intent, sentence))
           .catch(err => console.error(err.message || err))
       })
 

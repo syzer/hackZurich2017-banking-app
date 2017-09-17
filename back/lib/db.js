@@ -1,10 +1,10 @@
 const fs = require('fs')
+const {range, random, sample} = require('lodash')
 const promisify = require('util.promisify')
 const writeFileAsync = promisify(fs.writeFile)
 const readFileAsync = promisify(fs.readFile)
 const appendFileAsync = promisify(fs.appendFile)
 const faker = require('faker')
-const {range, random, sample} = require('lodash')
 const companies = ['Microsoft', 'Facebook', 'Google', 'Raiffeisen', 'CreditSuisse', 'ABB', 'Siroop', 'Swisscom', 'Viessmann']
 
 // . dot is the same folder that npm start was called
@@ -19,6 +19,7 @@ const getCompanies = () => range(random(1, 3)).map(getCompany)
 const postRecommendations = data => appendFileAsync('./data/user.recommendations.json', '\n' + JSON.stringify(data))
 const getUserFriends = () => range(random(2, 3)).map(() => faker.name.firstName())
 const getMostBoughtProducts = () => range(random(2)).map(() => faker.commerce.product())
+const postMarketPrice = data =>  appendFileAsync('./data/market.price.json', '\n' + JSON.stringify(data))
 
 // TODO use that
 const getSummary = () => readFileAsync('./data/user.summary.json', 'utf-8').then(str => str.split('\n').map(JSON.parse))
@@ -26,13 +27,14 @@ const getSummary = () => readFileAsync('./data/user.summary.json', 'utf-8').then
 module.exports = {
   getCompanies,
   getCompany,
+  getMostBoughtProducts,
   getPayments,
   getSummary,
   getUserFriends,
-  getMostBoughtProducts,
   postAudio,
   postConversation,
   postLoan,
+  postMarketPrice,
   postPayment,
-  postRecommendations
+  postRecommendations,
 }

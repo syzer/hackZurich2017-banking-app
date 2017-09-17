@@ -1,7 +1,17 @@
 const natural = require('natural')
 let classifier = new natural.BayesClassifier()
+let companiesClassifier = new natural.BayesClassifier()
 const axios = require('axios')
 
+const companies = [
+  {label: 'AAPL', keywords: ['Apple']},
+  {label: 'CSG-U.TI', keywords: ['fan switch', 'Credit Suisse']},
+  {label: 'GOOG', keywords: ['Google', 'goog']},
+  {label: 'MSFT', keywords: ['Microsoft Corporation', 'Microsoft']},
+  {label: 'RBI.VI', keywords: ['BVI', 'Rising', 'ryzen', 'Raiffeisen']},
+  {label: 'SCMN.VX', keywords: ['Swisscom AG', 'swisscom']},
+  {label: 'ABB', keywords: ['ABB']},
+]
 // classifier = yield natural.BayesClassifier.load('./api/classifier.json', null)
 
 const intents = [
@@ -81,13 +91,17 @@ const intents = [
     'what about publications'
   ]
   },
-  { label: 'askStockPrice', keywords: ['monster Google stock price', 'what\'s stock price']},
+  {
+    label: 'askStockPrice',
+    keywords: ['what\'s the master price', 'what\'s on my', 'monster Google stock price', 'what\'s stock price']
+  },
   {
     label: 'cannotUnderstand', keywords: [
     'I don\'t understand', 'lalalalala',
     'blah blah blah blah blah', 'Milano', 'I\'m tired', 'Idora Park',
     'I do not want to talk',
-    'lalalala'
+    'qqqq lalalala qqqq',
+    'la'
   ]
   }
 ]
@@ -98,6 +112,12 @@ intents
 
 classifier.train()
 classifier.save('./data/classifier.json')
+
+companies.map(company =>
+  company.keywords.map(text => companiesClassifier.addDocument(text, company.label)))
+
+companiesClassifier.train()
+companiesClassifier.save('./data/classifier.companies.json')
 
 module.exports = {
   classify: (sentence) => {
@@ -110,5 +130,6 @@ module.exports = {
   // gets remote intent
   getIntent: (sentence) =>
     axios.get(`http://robot-machine.herokuapp.com/intent?statement=${sentence}`)
-      .then(({data}) => data)
+      .then(({data}) => data),
+  classifyCompanySymbol: (sentence) => companiesClassifier.getClassifications(sentence).shift().label
 }
