@@ -34,19 +34,19 @@ const pickRobotAction = ({label}) => {
   }[label]
 }
 
-// just in case the robot is ofline or srashes.. we don't wanna crash our frontend
+// just in case the robot is offline or crashes.. we don't wanna crash our frontend
 const pickRobotResponse = ({label}) => ({
   sentence1: 'sure',
   sentence2: 'sorry, only 100$',
   sentence3: 'raiff estimate',
   sentence4: 'debt has been repaid, maybe even paul notified',
   sentence5: 'here are some funds',
-  sentence6: 'they are investing in: a, b, and c',
+  sentence6: `they are investing in: ${db.getCompanies().join('and ')}`,
   sentence7: 'you are broke…again',
   sentence8: 'no can do',
 })[label]
 
-// TODO classifier has more intents : load, pay, repayment, summary
+// TODO classifier has more intents : load, pay, repayment, summary => use them
 const informConnectedClients = (io, intent) => (data) => {
   if (data.intent === 'repayment') {
     data.intent = 'pay'
@@ -85,21 +85,6 @@ module.exports = {
           .catch(err => console.error(err.Error || err))
       })
 
-      socket.on('getallpayments', socket => {
-        console.log('getallpayments')
-
-        fetch('./data/user.payments.json')
-          .then((res) => res.json())
-          .then((data) => {
-            console.log('data:', data);
-            socket.emit('payment', {payment: {to: res.to, payment: res.payment, date: res.date}})
-          })
-
-        // socket.emit('talkback', {response: {message: 'Did not understand the command.'}})
-        db.postConversation(sentence)
-          .then(console.log)
-          .catch(console.error)
-      })
     })
   },
   httpHandler(express) {

@@ -12,6 +12,7 @@
     "debug": "^3.0.1",
     "express": "~4.13.1",
     "express-routemap": "^1.1.0",
+    "faker": "^4.1.0",
     "jade": "~1.11.0",
     "lodash": "^4.17.4",
     "morgan": "~1.6.1",

@@ -2,7 +2,9 @@ import React, {Component} from 'react'
 import '../App.css'
 import {BrowserRouter, Link, Route} from 'react-router-dom'
 import Container from 'muicss/lib/react/container'
-import Card from "react-material-card";
+import Card from 'react-material-card'
+import faker from 'faker'
+
 
 class Payments extends Component {
   constructor(props) {
@@ -26,9 +28,9 @@ class Payments extends Component {
       <Card
         key={i}
         borderRadius={5}
-        style={{fontSize: 20, padding: 12, margin: 5}}
+        style={{fontSize: 20, padding: 12, margin: 8}}
         className="fancyCard">
-        <span style={{color:'#DCEDC1'}}>{e.payment}</span> to Mel
+        <span style={{color:'#DCEDC1'}}>{e.payment}</span> Francs to {faker.name.findName()}
       </Card>
     )
   )
