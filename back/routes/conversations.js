@@ -1,6 +1,8 @@
 const db = require('../lib/db')
 const {onError} = require('../lib')
 const ml = require('../lib/ml')
+const {random} = require('lodash')
+const {robotDoes} = require('../lib/robot')
 
 const defaultData = {
   payment: 400,
@@ -10,71 +12,77 @@ const defaultData = {
   date: '2017-09-16T09:26:15.020Z'
 }
 
-const data = [
-  {
-    entity: '50 francs',
-    type: 'builtin.currency',
-    startIndex: 9,
-    endIndex: 17,
-    resolution: [Object]
-  },
-  {
-    entity: '50',
-    type: 'builtin.number',
-    startIndex: 9
-  }
-]
-
 const formatAmount = (data) => {
   let amount = data.entities.find(({type}) =>
     ['builtin.currency', 'builtin.number'].includes(type))
 
-  console.warn(amount)
-  return amount ? Number(amount.entity.split(' ').shift()) : 30
+  return amount ? Number(amount.entity.split(' ').shift()) : random(0, 30)
 }
 
-// TODO load, pay, repayment
-const informConnectedClients = (io) => (data) => {
-  // {intent: data.topScoringIntent.intent, entities: data.entities}
-  // let dispatchEndpoint = null
-  // if (data.topScoringIntent.intent === 'Pay') {
-  //   dispatchEndpoint = '/payments'
-  // } else if (data.topScoringIntent.intent === 'Summary') {
-  //   dispatchEndpoint = '/summary'
-  // }
+// pickRobotAction :: Object(Intent) => String(Action)
+const pickRobotAction = ({label}) => {
+  console.log('Dance robot, dance! ' + label)
+  return {
+    sentence1: 'kiss',
+    sentence2: 'noclue',
+    sentence3: 'hug',
+    sentence4: 'shaking',
+    sentence5: 'handsup',
+    sentence6: 'away',
+    sentence7: 'kill',
+    sentence8: 'no',
+  }[label]
+}
+
+// just in case the robot is ofline or srashes.. we don't wanna crash our frontend
+const pickRobotResponse = ({label}) => ({
+  sentence1: 'sure',
+  sentence2: 'sorry, only 100$',
+  sentence3: 'raiff estimate',
+  sentence4: 'debt has been repaid, maybe even paul notified',
+  sentence5: 'here are some funds',
+  sentence6: 'they are investing in: a, b, and c',
+  sentence7: 'you are broke…again',
+  sentence8: 'no can do',
+})[label]
+
+// TODO classifier has more intents : load, pay, repayment, summary
+const informConnectedClients = (io, intent) => (data) => {
   if (data.intent === 'repayment') {
     data.intent = 'pay'
   }
-  const amount = formatAmount(data)
-  console.warn('postPayment', data.topScoringIntent)
+  if (data.intent === 'pay') {
+    console.warn('posting To Client Payment', data.topScoringIntent)
+    const amount = formatAmount(data)
 
-  io.emit('payment', {payment: {user: 123, amount}})
+    io.emit('payment', {payment: {user: 123, amount}})
+  }
 
-  return data
+  console.warn('======', intent, data.topScoringIntent)
+
+  const robotAction = pickRobotAction(intent)
+  return robotDoes(robotAction)
+    .then(() => io.emit('talkback', pickRobotResponse(intent)))
 }
 
 module.exports = {
-  socketHandler (io) {
+  socketHandler(io) {
     io.on('connection', socket => {
       socket.emit('news', {conversations: 'online'})
 
       socket.on('postConversation', (sentence) => {
         sentence.user = 123 // default user
         sentence.date = new Date()
+
         console.log('postConversation', sentence)
 
         const intent = ml.classify(sentence.message)
-        console.log(intent)
 
         db.postConversation(sentence)
           .then(() =>
             ml.getIntent(`${intent.label}  ${sentence.message}`))
-          .then(informConnectedClients(io))
-          // .then(console.log)
+          .then(informConnectedClients(io, intent))
           .catch(err => console.error(err.Error || err))
-
-        // socket.emit('talkback', {response: {message: 'Did not understand the command.'}})
-
       })
 
       socket.on('getallpayments', socket => {
@@ -94,7 +102,7 @@ module.exports = {
       })
     })
   },
-  httpHandler (express) {
+  httpHandler(express) {
     return express.Router().post('/', (req, res, next) => {
       console.log(req.body, typeof req.body)
       const newPayment = Object.assign({}, defaultData, req.body)

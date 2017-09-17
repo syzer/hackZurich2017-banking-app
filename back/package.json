@@ -13,6 +13,7 @@
     "express": "~4.13.1",
     "express-routemap": "^1.1.0",
     "jade": "~1.11.0",
+    "lodash": "^4.17.4",
     "morgan": "~1.6.1",
     "natural": "^0.5.4",
     "serve-favicon": "~2.3.0",
