@@ -19,7 +19,8 @@
     "react-virtualized": "^9.9.0",
     "recorder.js": "^1.2.2",
     "recorderjs": "^1.0.1",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "speech-js": "^0.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

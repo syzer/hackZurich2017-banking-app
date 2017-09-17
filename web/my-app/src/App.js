@@ -20,6 +20,17 @@ import Payments from './route/Payments'
 import SideBar from './route/SideBar'
 import {BrowserRouter, Route} from "react-router-dom";
 
+import speech from 'speech-js'
+
+speech.synthesis('hello world', 'en-US') // speech synthesis module
+
+const recognition = speech.recognition('en-US') // speech recognition module
+recognition.start()
+recognition.onresult = e => {
+  let result = e.results[0][0].transcript
+  speech.synthesis(result, 'en-US')
+}
+
 injectTapEventPlugin()
 
 const {ToastContainer} = ReactToastr
