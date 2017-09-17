@@ -100,6 +100,25 @@ def intent():
     return luis_json, 200
 
 
+@app.route('/raiffloans')
+def raiffloans():
+    url = "https://api.raiffeisen.ch/loacalc/service/v4/rchProducts"
+    products = urllib.request.urlopen(url).read().decode()
+    products_dict = json.loads(products)
+
+    models = [x['baseProperties']['model'] for x in products_dict['products']['product']]
+
+    msg = 'Following models exist: '+', '.join(models)
+
+    return msg, 200
+
+
+@app.route('/companies')
+def companies():
+    msg = ', '.join(['Microsoft', 'Facebook', 'Google', 'Raiffeisen', 'CreditSuisse', 'ABB', 'Siroop', 'Swisscom', 'Viessmann' ])
+    return msg
+
+
 if __name__ == '__main__':
     print("Running")
     app.run(debug=True)
