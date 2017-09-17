@@ -37,7 +37,7 @@ const pickRobotAction = ({label}) => {
 // just in case the robot is offline or crashes.. we don't wanna crash our frontend
 const pickRobotResponse = ({label}) => ({
   sentence1: 'sure',
-  sentence2: 'sorry, only 100$',
+  sentence2: 'sorry, only two hundred swiss francs',
   sentence3: 'raiff estimate',
   sentence4: 'debt has been repaid, maybe even paul notified',
   sentence5: 'here are some funds',
@@ -48,17 +48,22 @@ const pickRobotResponse = ({label}) => ({
 
 // TODO classifier has more intents : load, pay, repayment, summary => use them
 const informConnectedClients = (io, intent) => (data) => {
+  console.warn('>', intent, data.topScoringIntent)
+
   if (data.intent === 'repayment') {
     data.intent = 'pay'
   }
   if (data.intent === 'pay') {
-    console.warn('posting To Client Payment', data.topScoringIntent)
     const amount = formatAmount(data)
-
-    io.emit('payment', {payment: {user: 123, amount}})
+    return io.emit('payment', {payment: {user: 123, amount}})
   }
 
-  console.warn('======', intent, data.topScoringIntent)
+  if (data.intent === 'summary') {
+    return db.getSummary().then(() =>
+      `Last month you spend to much on beer with Mel and Frank. 
+      Also I recommend investing in ${db.getCompany()}`)
+      .then(summary => io.emit('getSummary', summary))
+  }
 
   const robotAction = pickRobotAction(intent)
   return robotDoes(robotAction)

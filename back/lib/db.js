@@ -16,7 +16,7 @@ const getCompany = () => `${faker.company.companyName()}`
 const getCompanies = () => range(3).map(getCompany)
 
 // TODO use that
-const getSummary = data => appendFileAsync('./data/user.conversations.json', '\n' + JSON.stringify(data))
+const getSummary = () => readFileAsync('./data/user.summary.json', 'utf-8').then(str => str.split('\n').map(JSON.parse))
 
 module.exports = {
   postAudio,

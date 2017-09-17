@@ -35,7 +35,6 @@ class App extends Component {
 
     this.state = {
       name: 'Banking-app',
-      party: ['Mark', 'Lukas', 'Mel', 'Ivan'].map(e => ({name: e})),
       record: false,
       blobObject: null,
       isRecording: false,
@@ -49,9 +48,10 @@ class App extends Component {
     socket.on('news', data => console.log)
 
     // TODO unrecognized conversation from server
-    socket.on('talkback', data => {
-      console.log('Talkback data received: ', data)
-      speech.synthesis(data, 'en-US')
+    socket.on('talkback', robotMessage => {
+      console.log('Robot says: ', robotMessage)
+      this.addMessage(robotMessage)
+      speech.synthesis(robotMessage, 'en-US')
     })
 
     socket.on('payment', data => {
@@ -76,16 +76,6 @@ class App extends Component {
 
   }
 
-  // componentDidMount = () => {
-  //   const recognition = speech.recognition('en-US') // speech recognition module
-  //   recognition.start()
-  //   recognition.onresult = e => {
-  //     let result = e.results[0][0].transcript
-  //     speech.synthesis(result, 'en-US')
-  //     console.log(result)
-  //   }
-  // }
-
   onStart = () => {
     console.log('You can tap into the onStart callback')
   }
@@ -103,7 +93,9 @@ class App extends Component {
       console.log('.', lastResult)
       this.state.socket.emit('postConversation', {message: lastResult})
     }, error => {
-      this.onDialogOpen('Could not understand you')
+      if (error.error !== 'aborted') {
+        this.onDialogOpen('Could not understand you')
+      }
     })
     this.setState({
       record: true,
@@ -130,14 +122,22 @@ class App extends Component {
     })
   }
 
-  addAlert = (amount) => {
+  addAlert = (amount) =>
     this.toastr.success(
       amount + ' swiss franc',
       'Payment', {
         timeOut: 5000,
         extendedTimeOut: 3000
       })
-  }
+
+  addMessage = (message) =>
+    this.toastr.success(
+      message,
+      'Robot', {
+        timeOut: 2000,
+        extendedTimeOut: 2000
+      })
+
 
   render () {
     return (
