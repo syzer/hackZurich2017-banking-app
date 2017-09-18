@@ -35,7 +35,7 @@ const pickRobotAction = ({label}) => {
     sentence8: 'no',
     cannotUnderstand: 'noclue',
     askStockPrice: 'handsup'
-  }[label]
+  }[label || 'cannotUnderstand']
 }
 
 // just in case the robot is offline or crashes.. we don't wanna crash our frontend
@@ -43,14 +43,14 @@ const pickRobotResponse = ({label}) => ({
   sentence1: 'Sure, I did pay Jeff and deducted eight francs from your account',
   sentence2: 'Sorry, only two hundred swiss francs',
   sentence3: `According to Raiffeisen, you should borrow money from ABC, because they have a lowest interest rate`,
-  sentence4: 'The debt has been repaid, and the Paul even was notified',
+  sentence4: 'The debt has been repaid, and the Paul was notified',
   sentence5: 'Here are some funds, that you might want to invest in.',
   sentence6: `They are investing in: ${db.getCompanies().join('and ')}`,
   sentence7: 'You are broke... again',
   sentence8: 'No can do',
   cannotUnderstand: 'Could you repeat? I did not understand...',
   askStockPrice: '900 swiss franks'
-})[label]
+})[label || 'cannotUnderstand']
 
 // TODO classifier has more intents : load, pay, repayment, summary => use them
 const informConnectedClients = (socket, intent, sentence) => (mlAnswer) => {
