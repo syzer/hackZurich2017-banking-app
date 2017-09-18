@@ -101,7 +101,7 @@ const intents = [
     'blah blah blah blah blah', 'Milano', 'I\'m tired', 'Idora Park',
     'I do not want to talk',
     'qqqq lalalala qqqq',
-    'la'
+    'lala'
   ]
   }
 ]
