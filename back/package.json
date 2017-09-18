@@ -17,6 +17,7 @@
     "lodash": "^4.17.4",
     "morgan": "~1.6.1",
     "natural": "^0.5.4",
+    "ramda": "^0.24.1",
     "serve-favicon": "~2.3.0",
     "socket.io": "^2.0.3",
     "util.promisify": "^1.0.0",

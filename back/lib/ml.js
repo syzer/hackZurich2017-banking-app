@@ -120,6 +120,7 @@ companiesClassifier.train()
 companiesClassifier.save('./data/classifier.companies.json')
 
 module.exports = {
+  // classify usr intent
   classify: (sentence) => {
     const result = classifier.getClassifications(sentence).shift()
     return {
