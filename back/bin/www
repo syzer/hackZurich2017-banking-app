@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+require('flow-remove-types/register')
 
 /**
  * Module dependencies.

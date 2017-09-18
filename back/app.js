@@ -7,8 +7,8 @@ const bodyParser = require('body-parser')
 const socket = require('socket.io')
 const http = require('http')
 const debug = require('debug')('back:server')
-const paymentHttpHandler = require('./routes/payments').httpHandler
-const conversationsHttpHandler = require('./routes/conversations').httpHandler
+const {httpHandler: paymentHttpHandler} = require('./routes/payments')
+const {httpHandler: conversationsHttpHandler} = require('./routes/conversations')
 
 const routes = require('./routes/index')
 const users = require('./routes/users')
@@ -27,8 +27,11 @@ app.use(bodyParser.urlencoded({ extended: true })) // true is body
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.use('/conversations', conversationsHttpHandler(express))
+app.use('/payments', paymentHttpHandler(express))
 app.use('/', routes)
 app.use('/users', users)
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found')
@@ -59,9 +62,6 @@ app.use((err, req, res, next) => {
     error: {}
   })
 })
-
-app.use('/conversations', conversationsHttpHandler(express))
-app.use('/payments', paymentHttpHandler(express))
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

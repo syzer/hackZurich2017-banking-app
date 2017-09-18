@@ -3,7 +3,6 @@ const {onError} = require('../lib')
 const ml = require('../lib/ml')
 const {random, sample} = require('lodash')
 const {robotDoes} = require('../lib/robot')
-const faker = require('faker')
 const intents = require('./intents/askStockPrice')
 
 const defaultData = {
@@ -70,7 +69,7 @@ const informConnectedClients = (socket, intent, sentence) => (mlAnswer) => {
   }
 
   // when summary and not and robot talk back to you
-  if (mlAnswer.topScoringIntent.intent === 'summary' && !intent.label.includes('sentence') ) {
+  if (mlAnswer.topScoringIntent.intent === 'summary' && !intent.label.includes('sentence')) {
     return db.getSummary().then(() =>
       `Last month you spend to much on ${db.getMostBoughtProducts().join(' and ')} with ${db.getUserFriends().join(' and ')}.  
       Also I recommend investing in ${db.getCompany()}`)
@@ -90,7 +89,7 @@ const informConnectedClients = (socket, intent, sentence) => (mlAnswer) => {
 }
 
 module.exports = {
-  socketHandler(io) {
+  socketHandler: io =>
     io.on('connection', socket => {
       socket.emit('news', {conversations: 'online'})
 
@@ -108,17 +107,13 @@ module.exports = {
           .then(informConnectedClients(socket, intent, sentence))
           .catch(err => console.error(err.message || err))
       })
-
-    })
-  },
-  httpHandler(express) {
-    return express.Router().post('/', (req, res, next) => {
-      console.log(req.body, typeof req.body)
+    }),
+  httpHandler: express =>
+    express.Router().post('/', (req, res, next) => {
       const newPayment = Object.assign({}, defaultData, req.body)
 
       return db.postPayment(newPayment)
         .then(() => res.status(200).json(newPayment))
         .catch(onError(req, res))
     })
-  }
 }
