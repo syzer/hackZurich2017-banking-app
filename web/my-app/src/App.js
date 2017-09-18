@@ -38,11 +38,10 @@ class App extends Component {
       messages: [],
       payments: [],
       loans: [],
-      news: []
     }
 
     // endpoints online
-    socket.on('news', data => console.log)
+    socket.on('status', console.log)
 
     socket.on('talkback', robotMessage => {
       console.log('Robot says: ', robotMessage)
@@ -195,8 +194,10 @@ class App extends Component {
           <div>
             <Route
               path="/payments"
-              component={Payments}
-              payments={this.state.payments}
+              render={(props) => ( <Payments
+                socket={this.state.socket}
+                payments={this.state.payments}
+              /> )}
             />
           </div>
 

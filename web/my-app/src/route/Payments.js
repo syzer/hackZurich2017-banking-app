@@ -9,13 +9,12 @@ import faker from 'faker'
 class Payments extends Component {
   constructor(props) {
     super(props)
-    const socket = global.io.connect('http://localhost:4000')
 
     this.state = {
       payments: [],
     }
 
-    socket.on('getPayments', payments => {
+    this.props.socket.on('getPayments', payments => {
       console.log('server payment', payments)
       this.setState({
         payments: this.state.payments.concat(payments)
