@@ -7,8 +7,8 @@ require('flow-remove-types/register')
 const http = require('http')
 const debug = require('debug')('net.migros.monitor:server')
 const displayRoutes = require('express-routemap')
-const app = require('../app')
-const { port, ip } = require('../config')
+const app = require('../src/app')
+const { port, ip } = require('../src/config')
 
 /**
  * Get port from environment and store in Express.
@@ -21,14 +21,7 @@ app.set('ip', ip)
  */
 const server = http.createServer(app)
 
-// le socket connection
-const io = require('socket.io')(server)
-
-// register all sockets api's
-const { socketHandler: payments } = require('../routes/payments')
-const { socketHandler: conversations } = require('../routes/conversations')
-payments(io)
-conversations(io)
+require('../src/sockets')(server)
 
 /**
  * Listen on provided port, on all network interfaces.

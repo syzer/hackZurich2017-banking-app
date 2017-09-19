@@ -1,9 +1,10 @@
+// @flow
 const db = require('../lib/db')
 const {onError} = require('../lib')
 const ml = require('../lib/ml')
 const {random, sample} = require('lodash')
 const {robotDoes} = require('../lib/robot')
-const intents = require('./intents/askStockPrice')
+const intents = require('./intents/')
 
 const defaultData = {
   payment: 400,
@@ -51,8 +52,14 @@ const pickRobotResponse = ({label}) => ({
   askStockPrice: '900 swiss franks'
 })[label || 'cannotUnderstand']
 
+export type Sentence = {
+  message: string,
+  user: number,
+  data: Date,
+}
+
 // TODO classifier has more intents : load, pay, repayment, summary => use them
-const informConnectedClients = (socket, intent, sentence) => (mlAnswer) => {
+const informConnectedClients = (socket, intent, sentence: Sentence) => (mlAnswer) => {
   mlAnswer.date = new Date()
   console.warn('>', intent, mlAnswer.topScoringIntent)
   console.log('>>', formatAmount(mlAnswer))
@@ -83,6 +90,12 @@ const informConnectedClients = (socket, intent, sentence) => (mlAnswer) => {
         socket.emit('talkback', `The market stock price for ${symbol} is ${price}`))
   }
 
+  if (intent.label === 'say') {
+    return intents.say(sentence)
+      .then((response: string) =>
+        socket.emit('talkback', response))
+  }
+
   const robotAction = pickRobotAction(intent)
   return robotDoes(robotAction)
     .then(() => socket.emit('talkback', pickRobotResponse(intent)))
@@ -91,9 +104,10 @@ const informConnectedClients = (socket, intent, sentence) => (mlAnswer) => {
 module.exports = {
   socketHandler: io =>
     io.on('connection', socket => {
-      socket.emit('news', {conversations: 'online'})
+      socket.join('conversations')
+      io.emit('status', {conversations: 'online'})
 
-      socket.on('postConversation', (sentence) => {
+      socket.on('conversations.post', (sentence) => {
         sentence.user = 123 // default user
         sentence.date = new Date()
 

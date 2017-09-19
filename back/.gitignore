@@ -16,7 +16,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+src/lib/
 lib64/
 parts/
 sdist/
@@ -156,4 +156,4 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-!/lib/
+!/back/src/lib/

@@ -12,7 +12,7 @@ const defaultData = {
 const handlePayments = socket => {
   console.log(`a user connected ${socket.id}`)
 
-  socket.emit('news', {payments: 'online'})
+  socket.emit('status', {payments: 'online'})
 
   db.getPayments().then(payments => {
     socket.emit('getPayments', payments)

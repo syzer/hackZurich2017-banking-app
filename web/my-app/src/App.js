@@ -86,7 +86,7 @@ class App extends Component {
     recognizeSpeech(words, (event) => {
       const lastResult = event.results[0][0].transcript
       console.log('.', lastResult)
-      this.state.socket.emit('postConversation', {message: lastResult})
+      this.state.socket.emit('conversations.post', {message: lastResult})
     }, error => {
       if (error.error !== 'aborted') {
         this.onDialogOpen('Could not understand you')

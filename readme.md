@@ -18,3 +18,4 @@ http://robot-machine.herokuapp.com/intent?statement=i+confirm
 Our bot First draft:
 
 https://console.actions.google.com/?pli=1
+https://github.com/livelycode/aws-lib/blob/master/examples/prod-adv.js
