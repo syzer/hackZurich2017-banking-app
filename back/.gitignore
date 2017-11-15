@@ -156,4 +156,4 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-!/back/src/lib/
+!/src/lib/
